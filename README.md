@@ -17,14 +17,12 @@
 
 ## 导航栏目
  [官网地址](http://www.a3-mall.com)
- | [微信小程序下载](https://gitee.com/xzncit/A3Mall-miniprogram)
  | [帮助文档](http://doc.a3-mall.com)
  | [安装文档](http://doc.a3-mall.com/help/)
 
 
 ## 项目介绍
-   A3Mall商城系统是基于ThinkPhp6.0+Vue开发的一套移动电商系统，
-   支持微信公众号商城、H5商城、小程序商城，支持多种营销活动，优惠劵、订单活动、团购、秒杀、会员特价、积分商品等功能。前后端全部开源。
+   A3Mall APP商城是免费开源商城系统，支持微信公众号商城、H5商城、小程序商城，支持多种营销活动，优惠劵、订单活动、团购、秒杀、会员特价、积分商品等功能。前后端功能开源。本系统基于ThinkPHP6框架。
    
    
 ## 软件架构
@@ -43,19 +41,6 @@
 Linux下需要给程序根目录下的runtime目录权限
 访问：http://域名.com/install
 按照提示安装
-
-H5
-cd H5  进入前端目录
-npm install
-修改.env.production配置文件
-npm run serve 调试前端页面
-npm run build 打包前端页面，复制dist目录内容到public目录替换 index.html static/wap 
-
-小程序
-下载好小程序源码，解压
-下载安装微信开发者工具
-导入微信小程序运行
-修改小程序根目录下 config.js 配置文件
 ```
 
 ## Linux Shell命令
