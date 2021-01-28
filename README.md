@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.5.6-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.0.0-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -24,7 +24,7 @@
 ## 项目介绍
    A3Mall APP商城是免费开源商城系统，支持微信公众号商城、H5商城、小程序商城，支持多种营销活动，优惠劵、订单活动、团购、秒杀、会员特价、积分商品等功能。前后端功能开源。本系统基于ThinkPHP6框架。
    
-   
+
 ## 软件架构
     PHP >= 7.2.0
     MySQL >= 5.6
@@ -33,7 +33,6 @@
    
    
 ## 安装A3Mall
-
 
 ```html
 下载好程序文件，解压上传到web根目录
