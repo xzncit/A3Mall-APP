@@ -70,6 +70,9 @@ php think task cancle|sign|complete|cart --time 30 (单位：天)
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/3.jpg "3.jpg")
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/4.jpg "4.jpg")
 ![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/5.jpg "5.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/6.jpg "6.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/7.jpg "7.jpg")
+![输入图片说明](https://gitee.com/xzncit/A3Mall/raw/master/readme/images/web/8.jpg "8.jpg")
 
 
  **bug反馈**
