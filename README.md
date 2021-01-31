@@ -17,20 +17,22 @@
 
 ## 导航栏目
  [官网地址](http://www.a3-mall.com)
- | [帮助文档](http://doc.a3-mall.com)
- | [安装文档](http://doc.a3-mall.com/help/)
-
+ | [H5/微信公众号商城下载](https://gitee.com/xzncit/A3Mall)
+  [帮助文档](http://doc.a3-mall.com)
 
 ## 项目介绍
    A3Mall APP商城是免费开源商城系统，支持微信公众号商城、H5商城、小程序商城，支持多种营销活动，优惠劵、订单活动、团购、秒杀、会员特价、积分商品等功能。前后端功能开源。本系统基于ThinkPHP6框架。
    
+## uniapp
+当前A3Mall uniapp 只支持生成 android、ios，其他版本的后续都会支持的。
+当前程序版本为测试版v1.0，在使用中有问题可以加群反馈。
 
 ## 软件架构
     PHP >= 7.2.0
     MySQL >= 5.6
     PDO PHP Extension
     MBstring PHP Extension
-   
+    FileInfo PHP Extension
    
 ## 安装A3Mall
 
