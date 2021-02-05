@@ -234,7 +234,7 @@ export function getSpeciaDetail(params) {
 
 export function getPointList(params) {
     return new Promise((resolve, reject) => {
-        request.get("/point",params).then((result)=>{
+        request.get("/exchange/list",params).then((result)=>{
             resolve(result)
         }).catch((error)=>{
             reject(error)
@@ -242,12 +242,12 @@ export function getPointList(params) {
     });
 }
 
-export function getPointDetail(params) {
+export function receivePointCoupon(params) {
     return new Promise((resolve, reject) => {
-        request.get("/point/view",params).then((result)=>{
+        request.get("/exchange/receive",params).then((result)=>{
             resolve(result);
         }).catch(error=>{
-            reject(error)
+            reject(error);
         });
     });
 }
@@ -726,90 +726,9 @@ export function gethelp() {
     })
 }
 
-export function getSpreadCashrecord(params) {
-    return new Promise((resolve, reject) => {
-        request.get("/spread/cashrecord",params).then(res=>{
-            resolve(res)
-        }).catch(err=>{
-            reject(err)
-        });
-    })
-}
-
-export function getCommission(params) {
-    return new Promise((resolve, reject) => {
-        request.get("/spread/commission",params).then(res=>{
-            resolve(res)
-        }).catch(err=>{
-            reject(err)
-        });
-    })
-}
-
-export function getSpreadIndex() {
-    return new Promise((resolve, reject) => {
-        request.get("/spread/index").then(res=>{
-            resolve(res)
-        }).catch(err=>{
-            reject(err)
-        });
-    })
-}
-
-export function getSpreadPromotionList(params) {
-    return new Promise((resolve, reject) => {
-        request.get("/spread/promotion_list",params).then(res=>{
-            resolve(res)
-        }).catch(err=>{
-            reject(err)
-        });
-    })
-}
-
-export function getSpreadPromotionOrder(params) {
-    return new Promise((resolve, reject) => {
-        request.get("/spread/promotion_order",params).then(res=>{
-            resolve(res)
-        }).catch(err=>{
-            reject(err)
-        });
-    })
-}
-
-export function getSpreadSettlement() {
-    return new Promise((resolve, reject) => {
-        request.get("/spread/settlement").then(res=>{
-            resolve(res)
-        }).catch(err=>{
-            reject(err)
-        });
-    })
-}
-
-export function editSpreadSettlement(params) {
-    return new Promise((resolve, reject) => {
-        request.post("/spread/settlement_save",params).then(res=>{
-            resolve(res)
-        }).catch(err=>{
-            reject(err)
-        });
-    })
-}
-
 export function getShareData() {
     return new Promise((resolve, reject) => {
         request.get("/share/index").then(res=>{
-            resolve(res)
-        }).catch(err=>{
-            reject(err)
-        });
-    })
-}
-
-
-export function otherLogin(params) {
-    return new Promise((resolve, reject) => {
-        request.post("/qq",params).then(res=>{
             resolve(res)
         }).catch(err=>{
             reject(err)

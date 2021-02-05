@@ -39,7 +39,7 @@
 				</view>
 				
 				<view class="logout">
-					<button form-type="submit" @click="logout">退出登录</button>
+					<button @click="logout">退出登录</button>
 				</view>
 			</form>
 		</view>

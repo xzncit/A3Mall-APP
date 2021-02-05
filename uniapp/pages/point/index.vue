@@ -1,38 +1,27 @@
 <template>
     <view>
-        <view class="navbar">
-            <view class="nav-item" :class="{current: filterIndex === 0}" @click="tabClick(0)">
-                综合排序
-            </view>
-            <view class="nav-item" :class="{current: filterIndex === 1}" @click="tabClick(1)">
-                销量优先
-            </view>
-            <view class="nav-item" :class="{current: filterIndex === 2}" @click="tabClick(2)">
-                <view>积分</view>
-                <view class="arrow-box">
-                    <text :class="{active: priceOrder === 1 && filterIndex === 2,'icon-arrow-up-active':priceOrder === 1 && filterIndex === 2}" class="icon iconfont icon-arrow-up">&#xe61c;</text>
-                    <text :class="{active: priceOrder === 2 && filterIndex === 2,'icon-arrow-down-active':priceOrder === 2 && filterIndex === 2}" class="icon iconfont icon-arrow-down">&#xe61c;</text>
-                </view>
-            </view>
-        </view>
-
-        <view style="height: 100rpx; background-color: #b91922"></view>
-
 		<mescroll-body ref="mescrollRef" @init="mescrollInit" @down="downCallback" @up="upCallback">
-			<view class="goods-list-box">
-				<view
-					class="goods-list-item-box"
-					v-for="(item,index) in result"
-					:key="index"
-					@click="$utils.navigateTo('point/view',{ id: item.id })"
-				>
-					<view class="goods-list-item-wrap">
-						<view><image :src="item.photo"></view>
-						<view>{{ item.title }}</view>
-						<view>￥{{ item.price }}</view>
+			<div class="coupon clear">
+				<div class="coupon-wrap clear">
+					<view class="coupon-list clear">
+					
+						<view v-for="(item,index) in result"
+							 :key="index"
+							 class="coupon-item"
+							 @click="onCoupon(item.id,index)"
+						>
+							<view>{{item.name}}</view>
+							<view>
+								<text>{{item.point}}积分</text>
+								<text :class="{ 'active': item.active }">点击兑换</text>
+							</view>
+							<view>{{item.start_time}} ~ {{item.end_time}}</view>
+							<view class="coupon-img"><image src="../../static/images/coupon-img.png"></image></view>
+						</view>
+					
 					</view>
-				</view>
-			</view>
+				</div>
+			</div>
 		</mescroll-body>
 
     </view>
@@ -49,24 +38,25 @@
 		},
 		data() {
 			return {
-				filterIndex: 0,
-				priceOrder: 1,
 				result: []
 			}
 		},
 		methods: {
-			tabClick(index){
-				if(this.filterIndex === index && index !== 2){
-					return;
-				}
-				this.filterIndex = index;
-				if(index === 2){
-					this.priceOrder = this.priceOrder === 1 ? 2: 1;
-				}else{
-					this.priceOrder = 0;
+			onCoupon(id,index){
+				if(this.result[index].active){
+					return false;
 				}
 
-				this.mescroll.resetUpScroll();
+				this.$http.receivePointCoupon({
+					id: id
+				}).then(res=>{
+					if(res.status){
+						this.result[index].active = 1;
+						this.$utils.msg(res.info);
+					}else{
+						this.$utils.msg(res.info);
+					}
+				});
 			},
 			downCallback(){
 				setTimeout(()=>{
@@ -78,9 +68,7 @@
 			},
 			upCallback(page) {
 				this.$http.getPointList({
-					page: page.num,
-					type: this.filterIndex,
-					sort: this.priceOrder
+					page: page.num
 				}).then((result)=>{
 					this.mescroll.endByPage(result.data.list.length, result.data.total);
 					if(result.status==1){
@@ -98,59 +86,63 @@
 </script>
 
 <style lang="scss" scoped>
-    .navbar{
-        position: fixed;
-        left: 0;
-        top: 0rpx;
-        display: flex;
-        width: 100%;
-        height: 100rpx;
-        background: #b91922;
-        z-index: 10;
-        .nav-item{
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            font-size: 28rpx;
-            color: #fff;
-            position: relative;
-            &.current{ color: #fff000; }
-            .arrow-box{
-                display: flex;
-                flex-direction: column;
-                .icon{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 38rpx;
-                    height: 10rpx;
-                    line-height: 10rpx;
-                    margin-left: 0px;
-                    font-size: 30rpx;
-                    color: #fff;
-                    text-align: center;
-                    &.active{
-                        color: #fff000;
-                    }
-                }
-                .icon-arrow-up {}
-                .icon-arrow-down {
-                    transform:rotate(-180deg);
-                }
-            }
-        }
+    .coupon {
+    	margin: 30rpx auto 40rpx auto;
+    	position: relative;
+    	width: 100%;
+    	border-radius: 30rpx;
+    	.coupon-wrap {
+    		padding: 0 30rpx;
+    		.coupon-item {
+    			width: 100%; height: 188rpx;
+    			border: 2rpx solid #eec5af;
+    			border-radius: 20rpx;
+    			float: left;
+    			position: relative;
+    			margin-bottom: 30rpx;
+    			view {
+    				&:nth-child(1){
+    					float: left; width: 100%;
+    					margin-top: 32rpx;
+    					font-size: 34rpx; color: #393939;
+    					text-indent: 34rpx;
+    				}
+    				&:nth-child(2){
+    					float: left; width: 100%;
+    					margin-top: 10rpx;
+    					text {
+    						float: left;
+    						margin-left: 34rpx;
+    						&:first-child {
+    							color: #b91922;
+    							font-size: 28rpx;
+    						}
+    						&:last-child {
+    							background-color: #b91922;
+    							color: #fff;
+    							width: 140rpx; height: 40rpx; line-height: 40rpx;
+    							font-size: 24rpx; text-align: center;
+    							border-radius: 30rpx;
+    							&.active {
+    								background-color: #999;
+    							}
+    						}
+    					}
+    				}
+    				&:nth-child(3){
+    					float: left; width: 100%;
+    					font-size: 24rpx; text-indent: 34rpx;
+    					margin-top: 10rpx;
+    				}
+    				&:nth-child(4){
+    					position: absolute;
+    					right: 20rpx; bottom: 0;
+    					image {
+    						width: 180rpx; height: 140rpx;
+    					}
+    				}
+    			}
+    		}
+    	}
     }
-
-    .goods-list-box{ margin-top: 20rpx; width: 100%;display: flex; flex-direction: row;flex-wrap: wrap; }
-    .goods-list-item-box{ width: 50%; margin-bottom: 20rpx; }
-    .goods-list-item-box:nth-child(2n+1) .goods-list-item-wrap { margin-left: 20rpx; margin-right: 10rpx; }
-    .goods-list-item-box:nth-child(2n) .goods-list-item-wrap { margin-left: 10rpx; margin-right: 20rpx; }
-    .goods-list-item-wrap{ height: 520rpx; background: #fff; overflow: hidden; border-radius: 16rpx; }
-    .goods-list-item-wrap view { display: block; }
-    .goods-list-item-wrap view:nth-child(1) { height: 370rpx; }
-    .goods-list-item-wrap view:nth-child(1) image { padding: 20rpx 5%; width: 90%; height: 330rpx; }
-    .goods-list-item-wrap view:nth-child(2) { height: 80rpx; font-size: 30rpx; padding: 0 20rpx; display: -webkit-box;overflow: hidden;-webkit-line-clamp: 2;-webkit-box-orient: vertical; }
-    .goods-list-item-wrap view:nth-child(3){ font-size: 26rpx; padding: 10rpx; color: red; }
 </style>

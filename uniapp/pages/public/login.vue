@@ -25,14 +25,6 @@
 				<view><navigator url="register" hover-class="none">用户注册</navigator></view>
 				<view><navigator url="forget" hover-class="none">忘记密码</navigator></view>
 			</view>
-			<view class="other-login" v-if="providerList.length">
-			    <view class="other-login-text">
-			        <view class="other-text">其他登录方式</view>
-			    </view>
-				<view class="btn">
-					<view @click="onOtherLogin">社交帐号登录</view>
-				</view>
-			</view>
 		</view>
 		
 		<loading v-if="isSubmit" :layer="true"></loading>
@@ -47,22 +39,10 @@
 		},
 		data() {
 			return {
-				isSubmit: false,
-				providerList: []
+				isSubmit: false
 			}
 		},
 		onLoad() {
-			uni.getProvider({
-				service: "oauth",
-				success:(result)=>{
-					this.providerList = result.provider.map((value)=>{
-						if(value != "univerify"){
-							return value;
-						}
-					});
-				},
-				fail: (error) => {}
-			});
 		},
 		onBackPress(e){
 			if (e.from === 'navigateBack') {
@@ -73,9 +53,6 @@
 			return true;
 		},
 		methods: {
-			onOtherLogin(){
-				this.$utils.navigateTo("public/oauth");
-			},
 			onSubmit(e){
 				let formData = e.detail.value;
 				this.isSubmit = true;
@@ -218,46 +195,5 @@
 				}
 			}
 		}
-	}
-	.other-login{
-	    width: 100%;
-	    margin: 50rpx 0% 0 0%;
-	    text-align: center;
-		position: relative;
-		.btn{
-			width: 100%;
-			margin-top: 58rpx;
-			view {
-				color: #848484;
-				background-color: #fafafa;
-				border: 1px solid #c1c1c1;
-				border-radius: 10rpx;
-				font-size: 33rpx;
-				height: 100rpx;
-				line-height: 100rpx;
-				text-align: center;
-			}
-		}
-	    .other-login-text{
-	        line-height: 0;
-	        color: #666666;
-	        &:before,&:after{
-	            position: absolute;
-	            background: #cccccc;
-	            content: "";
-	            height: 1px;
-	            width: 30%;
-	        }
-	        &:before{
-	            left: 0;
-	        }
-	        &:after{
-	            right: 0;
-	        }
-	        .other-text{
-	            font-size: .8rem;
-	            color: #bbbbbb;
-	        }
-	    }
 	}
 </style>

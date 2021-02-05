@@ -83,21 +83,6 @@
 			}
 		},
 		{
-			"path": "pages/public/oauth",
-			"style" : {
-				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "快捷登录",
-				"navigationStyle": "custom",
-				"app-plus": {
-					"bounce" : "none", // 去除下拉阴影
-					"titleNView": {
-						"autoBackButton": true,
-						"type": "transparent"
-					}
-				}
-			}
-		},
-		{
 			"path": "pages/public/forget",
 			"style" : {
 				"navigationBarTextStyle": "white",
@@ -291,33 +276,9 @@
 			"style": {
 				"navigationBarBackgroundColor": "#B91922",
 				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "积分商城",
+				"navigationBarTitleText": "积分兑换",
 				"app-plus": {
 					"bounce" : "none" // 去除下拉阴影
-				}
-			}
-		},
-		{
-			"path": "pages/point/view",
-			"style" : {
-				"navigationBarTextStyle": "black",
-				"navigationBarTitleText": "商品详情",
-				"navigationStyle": "custom",
-				"app-plus": {
-					"bounce" : "none", // 去除下拉阴影
-					"titleNView": {
-						"autoBackButton": true,
-						"type": "transparent",
-						"buttons": [
-							{  
-								"text": "\ue60e",  
-								"fontSrc": "/static/font/iconfont/iconfont.ttf",  
-								"fontSize": "19px",
-								"color": "#b91922",
-								"float": "right"
-							}  
-						]
-					}
 				}
 			}
 		},

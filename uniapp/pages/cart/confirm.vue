@@ -196,7 +196,7 @@
 				id: id,type: type
 			};
 			
-			if(this.$utils.in_array(type,["buy","point","second","regiment","special","group"])){
+			if(this.$utils.in_array(type,["buy","second","regiment","special"])){
 				params.sku_id = options.sku_id;
 				params.num = options.num;
 				if(options.kid){

@@ -35,6 +35,7 @@
 				        class="grid-box-item"
 				        v-for="(value,i) in category"
 				        :key="i"
+						@click="catJump(value)"
 				    >
 				        <view class="grid-box-item-img">
 				            <image :src="value.image"></image>
@@ -176,6 +177,14 @@
 			})
 		},
 		methods: {
+			catJump(data){
+				console.log(data);
+				if(data.url == 'category/index'){
+					this.$utils.switchTab(data.url);
+				}else{
+					this.$utils.navigateTo(data.url);
+				}
+			},
 			onJump(){
 				this.loadData();
 				this.mescroll.resetUpScroll();
