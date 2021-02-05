@@ -4,16 +4,16 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `mall_archives`;
 CREATE TABLE `mall_archives` (
   `id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT 0 COMMENT '分类id',
-  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
-  `hits` int(11) NOT NULL DEFAULT 0 COMMENT '点击量',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态',
-  `sort` smallint(6) NOT NULL DEFAULT 0 COMMENT '排序',
-  `photo` varchar(255) NOT NULL DEFAULT '' COMMENT '封面',
-  `intro` text NOT NULL COMMENT '简要',
-  `content` longtext NOT NULL COMMENT '内容',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
-  `update_time` int(10) NOT NULL DEFAULT 0 COMMENT '更新时间'
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `hits` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `sort` smallint(6) NOT NULL DEFAULT 0,
+  `photo` varchar(255) NOT NULL DEFAULT '',
+  `intro` text NOT NULL,
+  `content` longtext NOT NULL,
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `update_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_archives` (`id`, `pid`, `title`, `hits`, `status`, `sort`, `photo`, `intro`, `content`, `create_time`, `update_time`) VALUES
@@ -26,14 +26,14 @@ INSERT INTO `mall_archives` (`id`, `pid`, `title`, `hits`, `status`, `sort`, `ph
 DROP TABLE IF EXISTS `mall_area`;
 CREATE TABLE `mall_area` (
   `id` int(11) NOT NULL,
-  `pid` int(11) DEFAULT 0 COMMENT '父id',
-  `name` varchar(100) DEFAULT '' COMMENT '名称',
-  `level` tinyint(4) UNSIGNED DEFAULT 0 COMMENT '级别',
-  `zip` varchar(100) DEFAULT NULL COMMENT '编码',
+  `pid` int(11) DEFAULT 0,
+  `name` varchar(100) DEFAULT '',
+  `level` tinyint(4) UNSIGNED DEFAULT 0,
+  `zip` varchar(100) DEFAULT NULL,
   `lng` varchar(100) DEFAULT NULL,
   `lat` varchar(100) DEFAULT NULL,
-  `sort` smallint(5) NOT NULL DEFAULT 0 COMMENT '排序',
-  `is_lock` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否锁定'
+  `sort` smallint(5) NOT NULL DEFAULT 0,
+  `is_lock` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_area` (`id`, `pid`, `name`, `level`, `zip`, `lng`, `lat`, `sort`, `is_lock`) VALUES
@@ -3793,16 +3793,16 @@ INSERT INTO `mall_area` (`id`, `pid`, `name`, `level`, `zip`, `lng`, `lat`, `sor
 DROP TABLE IF EXISTS `mall_attachments`;
 CREATE TABLE `mall_attachments` (
   `id` bigint(20) NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 COMMENT '关联id',
-  `module` varchar(64) NOT NULL DEFAULT '' COMMENT '关联类型',
-  `method` varchar(128) NOT NULL DEFAULT '' COMMENT '关联类型参数',
-  `name` varchar(255) NOT NULL COMMENT '名称',
-  `path` varchar(255) NOT NULL DEFAULT '' COMMENT '附件路径',
-  `suffix` varchar(12) NOT NULL DEFAULT '' COMMENT '后缀',
+  `pid` bigint(20) NOT NULL DEFAULT 0,
+  `module` varchar(64) NOT NULL DEFAULT '',
+  `method` varchar(128) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL,
+  `path` varchar(255) NOT NULL DEFAULT '',
+  `suffix` varchar(12) NOT NULL DEFAULT '',
   `size` varchar(128) NOT NULL DEFAULT '',
-  `sort` int(10) NOT NULL DEFAULT 0 COMMENT '排序',
-  `options` text DEFAULT NULL COMMENT '额外参数',
-  `time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `sort` int(10) NOT NULL DEFAULT 0,
+  `options` text DEFAULT NULL,
+  `time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_attachments` (`id`, `pid`, `module`, `method`, `name`, `path`, `suffix`, `size`, `sort`, `options`, `time`) VALUES
@@ -4492,34 +4492,34 @@ DROP TABLE IF EXISTS `mall_cart`;
 CREATE TABLE `mall_cart` (
   `id` bigint(20) NOT NULL,
   `session_id` char(32) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户Id',
-  `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
-  `product_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '关联sku id',
-  `spec_key` text CHARACTER SET utf8 NOT NULL COMMENT '规格key',
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '销售价格',
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '成本价格',
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '市场价格',
-  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '重量',
-  `goods_nums` int(10) NOT NULL DEFAULT 0 COMMENT '件数',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
-  `update_time` int(10) NOT NULL DEFAULT 0 COMMENT '更新时间'
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `goods_id` bigint(20) NOT NULL DEFAULT 0,
+  `product_id` bigint(20) NOT NULL DEFAULT 0,
+  `spec_key` text CHARACTER SET utf8 NOT NULL,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `goods_nums` int(10) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `update_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_category`;
 CREATE TABLE `mall_category` (
   `id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT 0 COMMENT '父id',
-  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '名称',
-  `photo` varchar(255) NOT NULL DEFAULT '' COMMENT '封面',
-  `content` longtext DEFAULT NULL COMMENT '内容',
-  `module` varchar(64) NOT NULL DEFAULT '' COMMENT '模块',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态',
-  `sort` smallint(6) NOT NULL DEFAULT 0 COMMENT '排序',
-  `hits` bigint(20) NOT NULL DEFAULT 0 COMMENT '点击量',
-  `is_menu` tinyint(1) NOT NULL DEFAULT 0 COMMENT '菜单',
-  `is_hot` tinyint(1) NOT NULL DEFAULT 0 COMMENT '热门',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
-  `update_time` int(10) NOT NULL DEFAULT 0 COMMENT '更新时间'
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `photo` varchar(255) NOT NULL DEFAULT '',
+  `content` longtext DEFAULT NULL,
+  `module` varchar(64) NOT NULL DEFAULT '',
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `sort` smallint(6) NOT NULL DEFAULT 0,
+  `hits` bigint(20) NOT NULL DEFAULT 0,
+  `is_menu` tinyint(1) NOT NULL DEFAULT 0,
+  `is_hot` tinyint(1) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `update_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_category` (`id`, `pid`, `title`, `photo`, `content`, `module`, `status`, `sort`, `hits`, `is_menu`, `is_hot`, `create_time`, `update_time`) VALUES
@@ -4747,12 +4747,12 @@ INSERT INTO `mall_category` (`id`, `pid`, `title`, `photo`, `content`, `module`,
 DROP TABLE IF EXISTS `mall_data`;
 CREATE TABLE `mall_data` (
   `id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT 0 COMMENT '关联id',
-  `name` varchar(32) DEFAULT '' COMMENT '名称',
-  `sign` varchar(64) DEFAULT '' COMMENT '标识',
-  `description` text DEFAULT NULL COMMENT '说明',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(32) DEFAULT '',
+  `sign` varchar(64) DEFAULT '',
+  `description` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_data` (`id`, `pid`, `name`, `sign`, `description`, `status`, `create_time`) VALUES
@@ -4764,13 +4764,13 @@ INSERT INTO `mall_data` (`id`, `pid`, `name`, `sign`, `description`, `status`, `
 DROP TABLE IF EXISTS `mall_data_item`;
 CREATE TABLE `mall_data_item` (
   `id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT 0 COMMENT '父id',
-  `name` varchar(128) NOT NULL COMMENT '名称',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '地址',
-  `photo` varchar(255) NOT NULL DEFAULT '' COMMENT '图片',
-  `sort` smallint(6) NOT NULL DEFAULT 0 COMMENT '排序',
-  `target` tinyint(1) NOT NULL DEFAULT 1 COMMENT '是否新窗口打开',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态'
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(128) NOT NULL,
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `photo` varchar(255) NOT NULL DEFAULT '',
+  `sort` smallint(6) NOT NULL DEFAULT 0,
+  `target` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_data_item` (`id`, `pid`, `name`, `url`, `photo`, `sort`, `target`, `status`) VALUES
@@ -4794,46 +4794,46 @@ INSERT INTO `mall_data_item` (`id`, `pid`, `name`, `url`, `photo`, `sort`, `targ
 DROP TABLE IF EXISTS `mall_data_type`;
 CREATE TABLE `mall_data_type` (
   `id` int(11) NOT NULL,
-  `type` smallint(6) NOT NULL DEFAULT 0 COMMENT '数据类型',
-  `name` varchar(32) DEFAULT '' COMMENT '名称',
-  `sign` varchar(64) DEFAULT '' COMMENT '标识',
-  `description` text DEFAULT NULL COMMENT '说明',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `type` smallint(6) NOT NULL DEFAULT 0,
+  `name` varchar(32) DEFAULT '',
+  `sign` varchar(64) DEFAULT '',
+  `description` text DEFAULT NULL,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_deliver`;
 CREATE TABLE `mall_deliver` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL COMMENT '发货点名称',
-  `username` varchar(255) NOT NULL COMMENT '发货人姓名',
-  `company` varchar(255) NOT NULL DEFAULT '' COMMENT '公司',
-  `country` bigint(20) DEFAULT NULL COMMENT '国id',
-  `province` bigint(20) NOT NULL COMMENT '省id',
-  `city` bigint(20) NOT NULL COMMENT '市id',
-  `area` bigint(20) NOT NULL COMMENT '地区id',
-  `zip` varchar(6) DEFAULT '' COMMENT '邮编',
-  `address` varchar(255) NOT NULL COMMENT '具体地址',
-  `mobile` varchar(20) NOT NULL COMMENT '手机',
-  `phone` varchar(20) DEFAULT NULL COMMENT '电话',
-  `is_default` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1为默认地址，0则不是',
-  `note` text DEFAULT NULL COMMENT '备注'
+  `title` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `company` varchar(255) NOT NULL DEFAULT '',
+  `country` bigint(20) DEFAULT NULL,
+  `province` bigint(20) NOT NULL,
+  `city` bigint(20) NOT NULL,
+  `area` bigint(20) NOT NULL,
+  `zip` varchar(6) DEFAULT '',
+  `address` varchar(255) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT 0,
+  `note` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_distribution`;
 CREATE TABLE `mall_distribution` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '费用类型 0统一设置 1指定地区费用',
-  `title` varchar(128) DEFAULT '' COMMENT '快递名称',
-  `area_group` text DEFAULT NULL COMMENT '配送区域id',
-  `first_price_group` text DEFAULT NULL COMMENT '配送地址对应的首重价格',
-  `second_price_group` text DEFAULT NULL COMMENT '配送地区对应的续重价格',
-  `first_weight` bigint(20) UNSIGNED NOT NULL COMMENT '首重重量(克)',
-  `second_weight` bigint(20) UNSIGNED NOT NULL COMMENT '续重重量(克)',
-  `first_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '首重价格',
-  `second_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '续重价格',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '开启状态',
-  `is_lock` tinyint(1) NOT NULL DEFAULT 1 COMMENT '0开启 1关闭',
-  `sort` smallint(6) NOT NULL DEFAULT 99 COMMENT '排序'
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `title` varchar(128) DEFAULT '',
+  `area_group` text DEFAULT NULL,
+  `first_price_group` text DEFAULT NULL,
+  `second_price_group` text DEFAULT NULL,
+  `first_weight` bigint(20) UNSIGNED NOT NULL,
+  `second_weight` bigint(20) UNSIGNED NOT NULL,
+  `first_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `second_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `is_lock` tinyint(1) NOT NULL DEFAULT 1,
+  `sort` smallint(6) NOT NULL DEFAULT 99
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='配送方式表';
 
 INSERT INTO `mall_distribution` (`id`, `type`, `title`, `area_group`, `first_price_group`, `second_price_group`, `first_weight`, `second_weight`, `first_price`, `second_price`, `status`, `is_lock`, `sort`) VALUES
@@ -4844,13 +4844,13 @@ INSERT INTO `mall_distribution` (`id`, `type`, `title`, `area_group`, `first_pri
 DROP TABLE IF EXISTS `mall_freight`;
 CREATE TABLE `mall_freight` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `type` varchar(255) NOT NULL COMMENT '货运类型',
-  `code` varchar(255) NOT NULL DEFAULT '' COMMENT '快递编码',
-  `title` varchar(255) NOT NULL COMMENT '货运公司名称',
-  `url` varchar(255) NOT NULL COMMENT '官网地址',
-  `sort` smallint(5) NOT NULL DEFAULT 99 COMMENT '排序',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `type` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `sort` smallint(5) NOT NULL DEFAULT 99,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_freight` (`id`, `type`, `code`, `title`, `url`, `sort`, `status`, `create_time`) VALUES
@@ -4870,33 +4870,33 @@ INSERT INTO `mall_freight` (`id`, `type`, `code`, `title`, `url`, `sort`, `statu
 DROP TABLE IF EXISTS `mall_goods`;
 CREATE TABLE `mall_goods` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `cat_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '分类id',
-  `attr_id` int(11) NOT NULL DEFAULT 0 COMMENT '规格ID',
-  `brand_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '品牌ID',
-  `model_id` bigint(20) UNSIGNED NOT NULL COMMENT '模型ID',
-  `delivery_id` int(10) NOT NULL DEFAULT 0 COMMENT '配送方式',
-  `title` varchar(255) NOT NULL COMMENT '商品标题',
-  `goods_number` varchar(255) NOT NULL DEFAULT '' COMMENT '商品的货号',
-  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '重量',
-  `sell_price` decimal(15,2) DEFAULT 0.00 COMMENT '销售价格',
-  `market_price` decimal(15,2) DEFAULT 0.00 COMMENT '市场价格',
-  `cost_price` decimal(15,2) DEFAULT 0.00 COMMENT '成本价格',
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 COMMENT '库存',
-  `photo` varchar(255) DEFAULT '' COMMENT '封面',
-  `briefly` text DEFAULT NULL COMMENT '简要',
-  `content` longtext DEFAULT NULL COMMENT '商品描述',
-  `point` bigint(20) NOT NULL DEFAULT 0 COMMENT '积分',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '商品状态 0正常 1下架 2删除',
-  `visit` bigint(20) NOT NULL DEFAULT 0 COMMENT '浏览次数',
-  `favorite` bigint(20) NOT NULL DEFAULT 0 COMMENT '收藏量',
-  `sort` smallint(5) NOT NULL DEFAULT 99 COMMENT '排序',
-  `exp` bigint(20) NOT NULL DEFAULT 0 COMMENT '经验',
-  `sale` bigint(20) NOT NULL DEFAULT 0 COMMENT '销量',
-  `grade` bigint(20) NOT NULL DEFAULT 0 COMMENT '评分总数',
-  `upper_time` int(10) DEFAULT 0 COMMENT '上架时间',
-  `down_time` int(10) DEFAULT 0 COMMENT '下架时间',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间',
-  `update_time` int(10) NOT NULL DEFAULT 0 COMMENT '更新时间'
+  `cat_id` bigint(20) NOT NULL DEFAULT 0,
+  `attr_id` int(11) NOT NULL DEFAULT 0,
+  `brand_id` bigint(20) NOT NULL DEFAULT 0,
+  `model_id` bigint(20) UNSIGNED NOT NULL,
+  `delivery_id` int(10) NOT NULL DEFAULT 0,
+  `title` varchar(255) NOT NULL,
+  `goods_number` varchar(255) NOT NULL DEFAULT '',
+  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) DEFAULT 0.00,
+  `market_price` decimal(15,2) DEFAULT 0.00,
+  `cost_price` decimal(15,2) DEFAULT 0.00,
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `photo` varchar(255) DEFAULT '',
+  `briefly` text DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
+  `point` bigint(20) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `visit` bigint(20) NOT NULL DEFAULT 0,
+  `favorite` bigint(20) NOT NULL DEFAULT 0,
+  `sort` smallint(5) NOT NULL DEFAULT 99,
+  `exp` bigint(20) NOT NULL DEFAULT 0,
+  `sale` bigint(20) NOT NULL DEFAULT 0,
+  `grade` bigint(20) NOT NULL DEFAULT 0,
+  `upper_time` int(10) DEFAULT 0,
+  `down_time` int(10) DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `update_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_goods` (`id`, `cat_id`, `attr_id`, `brand_id`, `model_id`, `delivery_id`, `title`, `goods_number`, `goods_weight`, `sell_price`, `market_price`, `cost_price`, `store_nums`, `photo`, `briefly`, `content`, `point`, `status`, `visit`, `favorite`, `sort`, `exp`, `sale`, `grade`, `upper_time`, `down_time`, `create_time`, `update_time`) VALUES
@@ -4942,12 +4942,12 @@ INSERT INTO `mall_goods` (`id`, `cat_id`, `attr_id`, `brand_id`, `model_id`, `de
 DROP TABLE IF EXISTS `mall_goods_attribute`;
 CREATE TABLE `mall_goods_attribute` (
   `id` bigint(20) NOT NULL,
-  `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
-  `attr_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '规格id',
-  `attr_data_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '规格关联表ID',
-  `name` varchar(64) NOT NULL COMMENT '名称',
-  `value` varchar(64) NOT NULL COMMENT '规格值',
-  `thumb_image` varchar(128) NOT NULL DEFAULT '' COMMENT '规格图'
+  `goods_id` bigint(20) NOT NULL DEFAULT 0,
+  `attr_id` bigint(20) NOT NULL DEFAULT 0,
+  `attr_data_id` bigint(20) NOT NULL DEFAULT 0,
+  `name` varchar(64) NOT NULL,
+  `value` varchar(64) NOT NULL,
+  `thumb_image` varchar(128) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_goods_attribute` (`id`, `goods_id`, `attr_id`, `attr_data_id`, `name`, `value`, `thumb_image`) VALUES
@@ -4965,8 +4965,8 @@ INSERT INTO `mall_goods_attribute` (`id`, `goods_id`, `attr_id`, `attr_data_id`,
 DROP TABLE IF EXISTS `mall_goods_extends`;
 CREATE TABLE `mall_goods_extends` (
   `id` bigint(20) NOT NULL,
-  `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品ID',
-  `attribute` varchar(32) NOT NULL DEFAULT '' COMMENT '类型'
+  `goods_id` bigint(20) NOT NULL DEFAULT 0,
+  `attribute` varchar(32) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_goods_extends` (`id`, `goods_id`, `attribute`) VALUES
@@ -4985,14 +4985,14 @@ INSERT INTO `mall_goods_extends` (`id`, `goods_id`, `attribute`) VALUES
 DROP TABLE IF EXISTS `mall_goods_item`;
 CREATE TABLE `mall_goods_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL COMMENT '商品id',
-  `goods_number` varchar(255) NOT NULL DEFAULT '' COMMENT '货品的货号(以商品的货号加横线加数字组成)	',
-  `spec_key` text NOT NULL COMMENT '规格key',
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 COMMENT '库存',
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '市场价格',
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '销售价格',
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '成本价格',
-  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '重量'
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `goods_number` varchar(255) NOT NULL DEFAULT '',
+  `spec_key` text NOT NULL,
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_goods_item` (`id`, `goods_id`, `goods_number`, `spec_key`, `store_nums`, `market_price`, `sell_price`, `cost_price`, `goods_weight`) VALUES
@@ -5025,75 +5025,75 @@ INSERT INTO `mall_goods_item` (`id`, `goods_id`, `goods_number`, `spec_key`, `st
 DROP TABLE IF EXISTS `mall_goods_model`;
 CREATE TABLE `mall_goods_model` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL COMMENT '商品ID',
-  `attribute_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT '属性ID',
-  `attribute_value` varchar(255) DEFAULT NULL COMMENT '属性值',
-  `model_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT '模型ID',
-  `sort` smallint(8) NOT NULL DEFAULT 99 COMMENT '排序'
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `attribute_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `attribute_value` varchar(255) DEFAULT NULL,
+  `model_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `sort` smallint(8) NOT NULL DEFAULT 99
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_navigation`;
 CREATE TABLE `mall_navigation` (
   `id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT 0 COMMENT '类型id',
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '名称',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '地址',
-  `sort` smallint(6) NOT NULL DEFAULT 0 COMMENT '排序',
-  `target` tinyint(1) NOT NULL DEFAULT 1 COMMENT '是否新窗口打开	',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态'
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(128) NOT NULL DEFAULT '',
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `sort` smallint(6) NOT NULL DEFAULT 0,
+  `target` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_order`;
 CREATE TABLE `mall_order` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `activity_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '活动ID',
-  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户id',
-  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '订单类型 0：普通订单',
-  `order_no` varchar(255) NOT NULL DEFAULT '' COMMENT '订单号',
-  `pay_type` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户支付方式ID,当为0时表示货到付款',
-  `distribution_id` bigint(20) DEFAULT 0 COMMENT '用户选择的配送ID',
-  `status` tinyint(1) DEFAULT 1 COMMENT '订单状态 1生成订单,2支付订单,3取消订单(客户触发),4作废订单(管理员触发),5完成订单,6退款,7部分退款',
-  `pay_status` tinyint(1) DEFAULT 0 COMMENT '支付状态 0：未支付; 1：已支付;',
-  `distribution_status` tinyint(1) DEFAULT 0 COMMENT '配送状态 0：未发送,1：已发送,2：部分发送',
-  `delivery_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: 未收货 1: 己收货',
-  `evaluate_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0：未评价 1：己评价 2：部份评价',
-  `accept_name` varchar(32) NOT NULL DEFAULT '' COMMENT '收货人姓名',
-  `zip` varchar(6) DEFAULT '' COMMENT '邮编',
-  `mobile` varchar(20) DEFAULT '' COMMENT '手机',
-  `phone` varchar(20) DEFAULT '' COMMENT '电话',
-  `country` varchar(32) DEFAULT '' COMMENT '国家',
-  `province` varchar(32) DEFAULT '' COMMENT '省',
-  `city` varchar(32) DEFAULT '' COMMENT '市',
-  `area` varchar(32) DEFAULT '' COMMENT '区',
-  `address` varchar(255) DEFAULT '' COMMENT '收货地址',
-  `message` varchar(255) DEFAULT '' COMMENT '用户附言',
-  `note` text DEFAULT NULL COMMENT '管理员备注',
-  `remarks` text DEFAULT NULL COMMENT '发货单备注',
-  `is_delete` tinyint(1) DEFAULT 0 COMMENT '是否删除1为删除',
-  `insured` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '保价',
-  `pay_fee` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '支付手续费',
-  `taxes` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '税金',
-  `promotions` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '促销优惠金额',
-  `discount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '订单折扣',
-  `increase_amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '增加金额',
-  `reduce_amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '减少金额',
-  `real_freight` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '实付运费',
-  `payable_freight` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '总运费金额',
-  `real_point` bigint(20) NOT NULL DEFAULT 0 COMMENT '积分支付',
-  `real_amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '实付商品总金额',
-  `payable_amount` decimal(15,2) DEFAULT 0.00 COMMENT '应付商品总金额',
-  `order_amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '订单总金额',
-  `exp` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '增加的经验',
-  `point` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '增加的积分',
-  `trade_no` varchar(255) DEFAULT NULL COMMENT '支付平台交易号',
-  `source` int(11) NOT NULL DEFAULT 0 COMMENT '0：PC 1：mobile 2：wx 3：wxapp 4：app',
-  `admin_id` int(10) NOT NULL DEFAULT 0 COMMENT '订单是否由管理支付',
-  `send_time` int(10) DEFAULT 0 COMMENT '发货时间',
-  `accept_time` int(10) DEFAULT 0 COMMENT '用户收货时间',
-  `evaluate_time` int(10) NOT NULL DEFAULT 0 COMMENT '用户评价时间',
-  `pay_time` int(10) DEFAULT 0 COMMENT '付款时间',
-  `create_time` int(10) DEFAULT 0 COMMENT '下单时间',
-  `completion_time` int(10) DEFAULT 0 COMMENT '订单完成时间'
+  `activity_id` bigint(20) NOT NULL DEFAULT 0,
+  `user_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `order_no` varchar(255) NOT NULL DEFAULT '',
+  `pay_type` bigint(20) NOT NULL DEFAULT 0,
+  `distribution_id` bigint(20) DEFAULT 0,
+  `status` tinyint(1) DEFAULT 1,
+  `pay_status` tinyint(1) DEFAULT 0,
+  `distribution_status` tinyint(1) DEFAULT 0,
+  `delivery_status` tinyint(1) NOT NULL DEFAULT 0,
+  `evaluate_status` tinyint(1) NOT NULL DEFAULT 0,
+  `accept_name` varchar(32) NOT NULL DEFAULT '',
+  `zip` varchar(6) DEFAULT '',
+  `mobile` varchar(20) DEFAULT '',
+  `phone` varchar(20) DEFAULT '',
+  `country` varchar(32) DEFAULT '',
+  `province` varchar(32) DEFAULT '',
+  `city` varchar(32) DEFAULT '',
+  `area` varchar(32) DEFAULT '',
+  `address` varchar(255) DEFAULT '',
+  `message` varchar(255) DEFAULT '',
+  `note` text DEFAULT NULL,
+  `remarks` text DEFAULT NULL,
+  `is_delete` tinyint(1) DEFAULT 0,
+  `insured` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `pay_fee` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `taxes` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `promotions` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `discount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `increase_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `reduce_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `real_freight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `payable_freight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `real_point` bigint(20) NOT NULL DEFAULT 0,
+  `real_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `payable_amount` decimal(15,2) DEFAULT 0.00,
+  `order_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `exp` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `point` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `trade_no` varchar(255) DEFAULT NULL,
+  `source` int(11) NOT NULL DEFAULT 0,
+  `admin_id` int(10) NOT NULL DEFAULT 0,
+  `send_time` int(10) DEFAULT 0,
+  `accept_time` int(10) DEFAULT 0,
+  `evaluate_time` int(10) NOT NULL DEFAULT 0,
+  `pay_time` int(10) DEFAULT 0,
+  `create_time` int(10) DEFAULT 0,
+  `completion_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_order` (`id`, `activity_id`, `user_id`, `type`, `order_no`, `pay_type`, `distribution_id`, `status`, `pay_status`, `distribution_status`, `delivery_status`, `evaluate_status`, `accept_name`, `zip`, `mobile`, `phone`, `country`, `province`, `city`, `area`, `address`, `message`, `note`, `remarks`, `is_delete`, `insured`, `pay_fee`, `taxes`, `promotions`, `discount`, `increase_amount`, `reduce_amount`, `real_freight`, `payable_freight`, `real_point`, `real_amount`, `payable_amount`, `order_amount`, `exp`, `point`, `trade_no`, `source`, `admin_id`, `send_time`, `accept_time`, `evaluate_time`, `pay_time`, `create_time`, `completion_time`) VALUES
@@ -5156,15 +5156,15 @@ INSERT INTO `mall_order` (`id`, `activity_id`, `user_id`, `type`, `order_no`, `p
 DROP TABLE IF EXISTS `mall_order_collection`;
 CREATE TABLE `mall_order_collection` (
   `id` bigint(20) NOT NULL,
-  `order_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '订单号',
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户ID',
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '金额',
-  `payment_id` int(11) NOT NULL DEFAULT 0 COMMENT '支付方式ID',
-  `admin_id` int(11) NOT NULL DEFAULT 0 COMMENT '管理员id',
-  `pay_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '支付状态，0:准备，1:支付成功',
-  `note` text DEFAULT NULL COMMENT '收款备注',
-  `is_delete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:未删除 1:删除',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '时间'
+  `order_id` bigint(20) NOT NULL DEFAULT 0,
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `payment_id` int(11) NOT NULL DEFAULT 0,
+  `admin_id` int(11) NOT NULL DEFAULT 0,
+  `pay_status` tinyint(1) NOT NULL DEFAULT 0,
+  `note` text DEFAULT NULL,
+  `is_delete` tinyint(1) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_order_collection` (`id`, `order_id`, `user_id`, `amount`, `payment_id`, `admin_id`, `pay_status`, `note`, `is_delete`, `create_time`) VALUES
@@ -5206,26 +5206,26 @@ INSERT INTO `mall_order_collection` (`id`, `order_id`, `user_id`, `amount`, `pay
 
 DROP TABLE IF EXISTS `mall_order_delivery`;
 CREATE TABLE `mall_order_delivery` (
-  `id` bigint(20) NOT NULL COMMENT '发货单ID',
-  `order_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '订单ID',
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户ID',
-  `admin_id` bigint(20) DEFAULT 0 COMMENT '管理员ID',
-  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '收货人',
-  `zip` varchar(6) DEFAULT '' COMMENT '邮编',
-  `phone` varchar(32) DEFAULT '' COMMENT '联系电话',
-  `country` bigint(20) DEFAULT 0 COMMENT '国ID',
-  `province` bigint(20) NOT NULL DEFAULT 0 COMMENT '省ID',
-  `city` bigint(20) NOT NULL DEFAULT 0 COMMENT '市ID',
-  `area` bigint(20) NOT NULL DEFAULT 0 COMMENT '区ID',
-  `address` varchar(250) NOT NULL DEFAULT '' COMMENT '收货地址',
-  `mobile` varchar(20) DEFAULT '' COMMENT '手机',
-  `freight` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '运费',
-  `distribution_code` varchar(255) NOT NULL DEFAULT '' COMMENT '物流单号',
-  `distribution_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '物流方式',
-  `note` text DEFAULT NULL COMMENT '管理员添加的备注信息',
-  `is_delete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:未删除 1:已删除',
-  `freight_id` bigint(20) DEFAULT 0 COMMENT '货运公司ID',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
+  `id` bigint(20) NOT NULL,
+  `order_id` bigint(20) NOT NULL DEFAULT 0,
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `admin_id` bigint(20) DEFAULT 0,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `zip` varchar(6) DEFAULT '',
+  `phone` varchar(32) DEFAULT '',
+  `country` bigint(20) DEFAULT 0,
+  `province` bigint(20) NOT NULL DEFAULT 0,
+  `city` bigint(20) NOT NULL DEFAULT 0,
+  `area` bigint(20) NOT NULL DEFAULT 0,
+  `address` varchar(250) NOT NULL DEFAULT '',
+  `mobile` varchar(20) DEFAULT '',
+  `freight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `distribution_code` varchar(255) NOT NULL DEFAULT '',
+  `distribution_id` bigint(20) NOT NULL DEFAULT 0,
+  `note` text DEFAULT NULL,
+  `is_delete` tinyint(1) NOT NULL DEFAULT 0,
+  `freight_id` bigint(20) DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_order_delivery` (`id`, `order_id`, `user_id`, `admin_id`, `name`, `zip`, `phone`, `country`, `province`, `city`, `area`, `address`, `mobile`, `freight`, `distribution_code`, `distribution_id`, `note`, `is_delete`, `freight_id`, `create_time`) VALUES
@@ -5236,21 +5236,21 @@ INSERT INTO `mall_order_delivery` (`id`, `order_id`, `user_id`, `admin_id`, `nam
 DROP TABLE IF EXISTS `mall_order_goods`;
 CREATE TABLE `mall_order_goods` (
   `id` bigint(20) NOT NULL,
-  `order_id` bigint(20) NOT NULL COMMENT '订单ID',
-  `goods_id` bigint(20) NOT NULL COMMENT '商品ID',
-  `product_id` bigint(20) DEFAULT 0 COMMENT '货品ID',
+  `order_id` bigint(20) NOT NULL,
+  `goods_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) DEFAULT 0,
   `spec_key` text DEFAULT NULL,
-  `goods_no` varchar(128) NOT NULL DEFAULT '' COMMENT '商品编号',
-  `thumb_image` varchar(255) NOT NULL COMMENT '商品图片',
-  `real_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '实付金额',
-  `goods_nums` int(11) NOT NULL DEFAULT 1 COMMENT '商品数量',
-  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '重量',
-  `goods_array` text DEFAULT NULL COMMENT '保存商额外信息',
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '市场价格',
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '销售价格',
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '成本价格',
-  `is_send` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否已发货 0:未发货;1:已发货;2:已经退货',
-  `distribution_id` int(11) NOT NULL DEFAULT 0 COMMENT '配送单ID'
+  `goods_no` varchar(128) NOT NULL DEFAULT '',
+  `thumb_image` varchar(255) NOT NULL,
+  `real_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `goods_nums` int(11) NOT NULL DEFAULT 1,
+  `goods_weight` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `goods_array` text DEFAULT NULL,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `is_send` tinyint(1) NOT NULL DEFAULT 0,
+  `distribution_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_order_goods` (`id`, `order_id`, `goods_id`, `product_id`, `spec_key`, `goods_no`, `thumb_image`, `real_price`, `goods_nums`, `goods_weight`, `goods_array`, `market_price`, `sell_price`, `cost_price`, `is_send`, `distribution_id`) VALUES
@@ -5315,12 +5315,12 @@ INSERT INTO `mall_order_goods` (`id`, `order_id`, `goods_id`, `product_id`, `spe
 DROP TABLE IF EXISTS `mall_order_log`;
 CREATE TABLE `mall_order_log` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '订单ID',
-  `username` varchar(128) NOT NULL DEFAULT '' COMMENT '操作人',
-  `action` varchar(255) DEFAULT '' COMMENT '动作',
-  `result` varchar(255) NOT NULL DEFAULT '' COMMENT '结果',
-  `note` text NOT NULL COMMENT '说明',
-  `create_time` int(10) DEFAULT 0 COMMENT '操作时间'
+  `order_id` bigint(20) NOT NULL DEFAULT 0,
+  `username` varchar(128) NOT NULL DEFAULT '',
+  `action` varchar(255) DEFAULT '',
+  `result` varchar(255) NOT NULL DEFAULT '',
+  `note` text NOT NULL,
+  `create_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_order_log` (`id`, `order_id`, `username`, `action`, `result`, `note`, `create_time`) VALUES
@@ -5353,19 +5353,19 @@ INSERT INTO `mall_order_log` (`id`, `order_id`, `username`, `action`, `result`, 
 DROP TABLE IF EXISTS `mall_order_refundment`;
 CREATE TABLE `mall_order_refundment` (
   `id` bigint(20) NOT NULL,
-  `order_no` varchar(255) NOT NULL DEFAULT '' COMMENT '订单号',
-  `order_id` bigint(20) NOT NULL COMMENT '订单id',
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户ID',
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:平台余额，1其他方式',
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '退款金额',
-  `admin_id` bigint(20) DEFAULT 0 COMMENT '管理员id',
-  `pay_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '退款状态，0:申请退款 1:退款失败 2:退款成功',
-  `content` text DEFAULT NULL COMMENT '申请退款原因',
-  `dispose_idea` text DEFAULT NULL COMMENT '处理意见',
-  `is_delete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:未删除 1:删除',
-  `order_goods_id` text DEFAULT NULL COMMENT '订单与商品关联ID集合',
-  `dispose_time` int(10) DEFAULT 0 COMMENT '处理时间',
-  `create_time` int(10) DEFAULT 0 COMMENT '时间'
+  `order_no` varchar(255) NOT NULL DEFAULT '',
+  `order_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `admin_id` bigint(20) DEFAULT 0,
+  `pay_status` tinyint(1) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `dispose_idea` text DEFAULT NULL,
+  `is_delete` tinyint(1) NOT NULL DEFAULT 0,
+  `order_goods_id` text DEFAULT NULL,
+  `dispose_time` int(10) DEFAULT 0,
+  `create_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_order_refundment` (`id`, `order_no`, `order_id`, `user_id`, `type`, `amount`, `admin_id`, `pay_status`, `content`, `dispose_idea`, `is_delete`, `order_goods_id`, `dispose_time`, `create_time`) VALUES
@@ -5376,18 +5376,18 @@ INSERT INTO `mall_order_refundment` (`id`, `order_no`, `order_id`, `user_id`, `t
 DROP TABLE IF EXISTS `mall_payment`;
 CREATE TABLE `mall_payment` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(50) NOT NULL COMMENT '支付名称',
+  `name` varchar(50) NOT NULL,
   `alias_name` varchar(255) DEFAULT '',
-  `type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '类型0：货到付款 1：pc 2：wap 3：app 4: 公众号 5：手机网页支付 6: 小程序',
-  `code` varchar(50) NOT NULL COMMENT '支付类名称',
-  `description` text DEFAULT NULL COMMENT '描述',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '安装状态 0启用 1禁用',
+  `type` tinyint(1) NOT NULL DEFAULT 1,
+  `code` varchar(50) NOT NULL,
+  `description` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
   `is_show` tinyint(1) NOT NULL DEFAULT 0,
-  `sort` smallint(5) NOT NULL DEFAULT 99 COMMENT '排序',
-  `content` text DEFAULT NULL COMMENT '支付说明',
-  `poundage` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '手续费',
-  `poundage_type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '手续费方式 1百分比 2固定值',
-  `config` text DEFAULT NULL COMMENT '配置参数,json数据对象'
+  `sort` smallint(5) NOT NULL DEFAULT 99,
+  `content` text DEFAULT NULL,
+  `poundage` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `poundage_type` tinyint(1) NOT NULL DEFAULT 1,
+  `config` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='支付方式表';
 
 INSERT INTO `mall_payment` (`id`, `name`, `alias_name`, `type`, `code`, `description`, `status`, `is_show`, `sort`, `content`, `poundage`, `poundage_type`, `config`) VALUES
@@ -5399,8 +5399,8 @@ DROP TABLE IF EXISTS `mall_products_attribute`;
 CREATE TABLE `mall_products_attribute` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(50) NOT NULL COMMENT '规格名称	',
-  `note` varchar(255) DEFAULT NULL COMMENT '备注说明	',
+  `name` varchar(50) NOT NULL,
+  `note` varchar(255) DEFAULT NULL,
   `status` tinyint(1) DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -5415,8 +5415,8 @@ DROP TABLE IF EXISTS `mall_products_attribute_data`;
 CREATE TABLE `mall_products_attribute_data` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0,
-  `value` text DEFAULT NULL COMMENT '规格值	',
-  `sort` int(10) NOT NULL DEFAULT 0 COMMENT '排序'
+  `value` text DEFAULT NULL,
+  `sort` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_products_attribute_data` (`id`, `pid`, `value`, `sort`) VALUES
@@ -5435,47 +5435,47 @@ INSERT INTO `mall_products_attribute_data` (`id`, `pid`, `value`, `sort`) VALUES
 DROP TABLE IF EXISTS `mall_products_brand`;
 CREATE TABLE `mall_products_brand` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `is_hot` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1: 置顶 0: 默认',
-  `name` varchar(255) NOT NULL COMMENT '品牌名称',
-  `photo` varchar(255) DEFAULT NULL COMMENT 'logo地址',
-  `url` varchar(255) DEFAULT NULL COMMENT '网址',
-  `content` longtext DEFAULT NULL COMMENT '描述',
-  `sort` smallint(5) NOT NULL DEFAULT 0 COMMENT '排序',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `is_hot` tinyint(1) NOT NULL DEFAULT 0,
+  `name` varchar(255) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
+  `sort` smallint(5) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_products_model`;
 CREATE TABLE `mall_products_model` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(50) NOT NULL COMMENT '模型名称',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `name` varchar(50) NOT NULL,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_products_model_data`;
 CREATE TABLE `mall_products_model_data` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) UNSIGNED DEFAULT 0 COMMENT '模型ID',
-  `type` tinyint(1) DEFAULT NULL COMMENT '0:标题,1:单选,2:复选,3:下拉,4:输入框',
-  `name` varchar(50) DEFAULT NULL COMMENT '名称',
-  `value` text DEFAULT NULL COMMENT '属性值(逗号分隔)',
-  `sort` int(10) DEFAULT 0 COMMENT '排序'
+  `pid` bigint(20) UNSIGNED DEFAULT 0,
+  `type` tinyint(1) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `value` text DEFAULT NULL,
+  `sort` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_promotion_bonus`;
 CREATE TABLE `mall_promotion_bonus` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '红包名称',
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '红包金额',
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '红包类型',
-  `point` int(11) NOT NULL DEFAULT 0 COMMENT '兑换需要的积分',
-  `giveout` int(11) NOT NULL DEFAULT 0 COMMENT '发放数量',
-  `used` int(11) NOT NULL DEFAULT 0 COMMENT '己使用的数量',
-  `order_amount` decimal(15,2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '订单金额',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态',
-  `start_time` int(11) NOT NULL DEFAULT 0 COMMENT '开始时间',
-  `end_time` int(11) NOT NULL DEFAULT 0 COMMENT '结束时间',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `name` varchar(128) NOT NULL DEFAULT '',
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `point` int(11) NOT NULL DEFAULT 0,
+  `giveout` int(11) NOT NULL DEFAULT 0,
+  `used` int(11) NOT NULL DEFAULT 0,
+  `order_amount` decimal(15,2) UNSIGNED NOT NULL DEFAULT 0.00,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `start_time` int(11) NOT NULL DEFAULT 0,
+  `end_time` int(11) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_promotion_bonus` (`id`, `name`, `amount`, `type`, `point`, `giveout`, `used`, `order_amount`, `status`, `start_time`, `end_time`, `create_time`) VALUES
@@ -5488,12 +5488,12 @@ INSERT INTO `mall_promotion_bonus` (`id`, `name`, `amount`, `type`, `point`, `gi
 DROP TABLE IF EXISTS `mall_promotion_order`;
 CREATE TABLE `mall_promotion_order` (
   `id` bigint(20) NOT NULL,
-  `group_id` int(11) NOT NULL DEFAULT 0 COMMENT '会员等级',
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:满额打折 1:满额优惠金额 2:满额送积分 3满额免运费',
-  `name` varchar(128) DEFAULT '' COMMENT '活动名称',
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '满足金额',
+  `group_id` int(11) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `name` varchar(128) DEFAULT '',
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
   `expression` varchar(255) NOT NULL DEFAULT '',
-  `content` text DEFAULT NULL COMMENT '条件类型，和type对应',
+  `content` text DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `start_time` int(10) NOT NULL DEFAULT 0,
   `end_time` int(10) NOT NULL DEFAULT 0,
@@ -5509,17 +5509,17 @@ INSERT INTO `mall_promotion_order` (`id`, `group_id`, `type`, `name`, `amount`, 
 DROP TABLE IF EXISTS `mall_promotion_point`;
 CREATE TABLE `mall_promotion_point` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL COMMENT '关联商品id',
-  `title` varchar(255) NOT NULL COMMENT '商品标题',
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 COMMENT '库存量',
-  `sum_count` bigint(20) NOT NULL DEFAULT 0 COMMENT '已销售量',
-  `content` text DEFAULT NULL COMMENT '介绍',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否关闭',
-  `point` bigint(20) NOT NULL DEFAULT 0 COMMENT '积分数量',
-  `thumb_image` varchar(255) DEFAULT NULL COMMENT '商品图片',
-  `sort` smallint(5) NOT NULL DEFAULT 99 COMMENT '排序',
-  `start_time` int(10) NOT NULL DEFAULT 0 COMMENT '开始时间',
-  `end_time` int(10) NOT NULL DEFAULT 0 COMMENT '结束时间',
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `sum_count` bigint(20) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `point` bigint(20) NOT NULL DEFAULT 0,
+  `thumb_image` varchar(255) DEFAULT NULL,
+  `sort` smallint(5) NOT NULL DEFAULT 99,
+  `start_time` int(10) NOT NULL DEFAULT 0,
+  `end_time` int(10) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5534,19 +5534,19 @@ INSERT INTO `mall_promotion_point` (`id`, `goods_id`, `title`, `store_nums`, `su
 DROP TABLE IF EXISTS `mall_promotion_point_item`;
 CREATE TABLE `mall_promotion_point_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 COMMENT '货品ID',
+  `pid` bigint(20) NOT NULL DEFAULT 0,
   `spec_key` text DEFAULT NULL,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 COMMENT '库存',
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '市场价格',
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '销售价格',
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '成本价格	'
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_promotion_price`;
 CREATE TABLE `mall_promotion_price` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL COMMENT '产品ID',
-  `product_id` bigint(20) DEFAULT 0 COMMENT '货品ID	',
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5561,9 +5561,9 @@ INSERT INTO `mall_promotion_price` (`id`, `goods_id`, `product_id`, `create_time
 DROP TABLE IF EXISTS `mall_promotion_price_item`;
 CREATE TABLE `mall_promotion_price_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 COMMENT '产品ID',
-  `group_id` bigint(20) UNSIGNED NOT NULL COMMENT '用户组ID',
-  `price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '价格'
+  `pid` bigint(20) NOT NULL DEFAULT 0,
+  `group_id` bigint(20) UNSIGNED NOT NULL,
+  `price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_promotion_price_item` (`id`, `pid`, `group_id`, `price`) VALUES
@@ -5607,19 +5607,19 @@ INSERT INTO `mall_promotion_price_item` (`id`, `pid`, `group_id`, `price`) VALUE
 DROP TABLE IF EXISTS `mall_promotion_regiment`;
 CREATE TABLE `mall_promotion_regiment` (
   `id` bigint(20) NOT NULL,
-  `goods_id` bigint(20) UNSIGNED NOT NULL COMMENT '关联商品id',
-  `title` varchar(255) NOT NULL COMMENT '团购标题',
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 COMMENT '库存量',
-  `sum_count` bigint(20) NOT NULL DEFAULT 0 COMMENT '已销售量',
-  `limit_min_count` bigint(20) NOT NULL DEFAULT 0 COMMENT '每人限制最少购买数量	',
-  `limit_max_count` bigint(20) NOT NULL DEFAULT 0 COMMENT '每人限制最多购买数量	',
-  `content` text DEFAULT NULL COMMENT '介绍',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否关闭',
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '团购价格',
-  `thumb_image` varchar(128) DEFAULT NULL COMMENT '商品图片',
-  `sort` int(10) NOT NULL DEFAULT 99 COMMENT '排序',
-  `start_time` int(10) NOT NULL DEFAULT 0 COMMENT '开始时间',
-  `end_time` int(10) NOT NULL DEFAULT 0 COMMENT '结束时间',
+  `goods_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `sum_count` bigint(20) NOT NULL DEFAULT 0,
+  `limit_min_count` bigint(20) NOT NULL DEFAULT 0,
+  `limit_max_count` bigint(20) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `thumb_image` varchar(128) DEFAULT NULL,
+  `sort` int(10) NOT NULL DEFAULT 99,
+  `start_time` int(10) NOT NULL DEFAULT 0,
+  `end_time` int(10) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5634,29 +5634,29 @@ INSERT INTO `mall_promotion_regiment` (`id`, `goods_id`, `title`, `store_nums`, 
 DROP TABLE IF EXISTS `mall_promotion_regiment_item`;
 CREATE TABLE `mall_promotion_regiment_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 COMMENT '货品ID',
+  `pid` bigint(20) NOT NULL DEFAULT 0,
   `spec_key` text DEFAULT NULL,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 COMMENT '库存',
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '市场价格',
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '销售价格',
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '成本价格'
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_promotion_second`;
 CREATE TABLE `mall_promotion_second` (
   `id` int(11) UNSIGNED NOT NULL,
-  `goods_id` int(11) UNSIGNED NOT NULL COMMENT '关联商品id',
-  `title` varchar(255) NOT NULL COMMENT '商品标题',
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '销售价格',
-  `store_nums` int(11) NOT NULL DEFAULT 0 COMMENT '库存量',
-  `sum_count` int(11) NOT NULL DEFAULT 0 COMMENT '已销售量',
-  `content` text DEFAULT NULL COMMENT '介绍',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '是否关闭',
-  `thumb_image` varchar(255) DEFAULT NULL COMMENT '商品图片',
-  `sort` int(10) NOT NULL DEFAULT 99 COMMENT '排序',
-  `start_time` int(10) NOT NULL DEFAULT 0 COMMENT '开始时间',
-  `end_time` int(10) NOT NULL DEFAULT 0 COMMENT '结束时间',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `goods_id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `store_nums` int(11) NOT NULL DEFAULT 0,
+  `sum_count` int(11) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `thumb_image` varchar(255) DEFAULT NULL,
+  `sort` int(10) NOT NULL DEFAULT 99,
+  `start_time` int(10) NOT NULL DEFAULT 0,
+  `end_time` int(10) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_promotion_second` (`id`, `goods_id`, `title`, `sell_price`, `store_nums`, `sum_count`, `content`, `status`, `thumb_image`, `sort`, `start_time`, `end_time`, `create_time`) VALUES
@@ -5670,12 +5670,12 @@ INSERT INTO `mall_promotion_second` (`id`, `goods_id`, `title`, `sell_price`, `s
 DROP TABLE IF EXISTS `mall_promotion_second_item`;
 CREATE TABLE `mall_promotion_second_item` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `pid` bigint(20) NOT NULL DEFAULT 0 COMMENT '货品ID',
+  `pid` bigint(20) NOT NULL DEFAULT 0,
   `spec_key` text DEFAULT NULL,
-  `store_nums` bigint(20) NOT NULL DEFAULT 0 COMMENT '库存',
-  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '市场价格',
-  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '销售价格',
-  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '成本价格'
+  `store_nums` bigint(20) NOT NULL DEFAULT 0,
+  `market_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `sell_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `cost_price` decimal(15,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_promotion_second_item` (`id`, `pid`, `spec_key`, `store_nums`, `market_price`, `sell_price`, `cost_price`) VALUES
@@ -5686,11 +5686,11 @@ INSERT INTO `mall_promotion_second_item` (`id`, `pid`, `spec_key`, `store_nums`,
 DROP TABLE IF EXISTS `mall_search_keywords`;
 CREATE TABLE `mall_search_keywords` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '关键字',
-  `is_top` tinyint(1) NOT NULL DEFAULT 1 COMMENT '置顶',
-  `is_hot` tinyint(1) NOT NULL DEFAULT 1 COMMENT '热门',
-  `sort` smallint(6) NOT NULL DEFAULT 0 COMMENT '排序',
-  `create_time` int(11) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `name` varchar(128) NOT NULL DEFAULT '',
+  `is_top` tinyint(1) NOT NULL DEFAULT 1,
+  `is_hot` tinyint(1) NOT NULL DEFAULT 1,
+  `sort` smallint(6) NOT NULL DEFAULT 0,
+  `create_time` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_search_keywords` (`id`, `name`, `is_top`, `is_hot`, `sort`, `create_time`) VALUES
@@ -5703,7 +5703,7 @@ INSERT INTO `mall_search_keywords` (`id`, `name`, `is_top`, `is_hot`, `sort`, `c
 DROP TABLE IF EXISTS `mall_setting`;
 CREATE TABLE `mall_setting` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(32) DEFAULT NULL COMMENT '名称',
+  `name` varchar(32) DEFAULT NULL,
   `value` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -5728,13 +5728,13 @@ INSERT INTO `mall_setting` (`id`, `name`, `value`) VALUES
 DROP TABLE IF EXISTS `mall_sms_template`;
 CREATE TABLE `mall_sms_template` (
   `id` int(11) NOT NULL,
-  `sign` varchar(64) NOT NULL DEFAULT '' COMMENT '标识',
-  `sign_name` varchar(64) NOT NULL DEFAULT '' COMMENT '短信签名名称',
-  `template_code` varchar(128) NOT NULL DEFAULT '' COMMENT '模版CODE',
-  `template_name` varchar(255) NOT NULL DEFAULT '' COMMENT '短信模板名称',
-  `template_param` text DEFAULT NULL COMMENT '短信模板变量',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态（0：开 1：关）',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `sign` varchar(64) NOT NULL DEFAULT '',
+  `sign_name` varchar(64) NOT NULL DEFAULT '',
+  `template_code` varchar(128) NOT NULL DEFAULT '',
+  `template_name` varchar(255) NOT NULL DEFAULT '',
+  `template_param` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_sms_template` (`id`, `sign`, `sign_name`, `template_code`, `template_name`, `template_param`, `status`, `create_time`) VALUES
@@ -5746,8 +5746,8 @@ INSERT INTO `mall_sms_template` (`id`, `sign`, `sign_name`, `template_code`, `te
 DROP TABLE IF EXISTS `mall_statistics_search`;
 CREATE TABLE `mall_statistics_search` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '关键字',
-  `num` bigint(20) NOT NULL DEFAULT 0 COMMENT '搜索次数'
+  `name` varchar(128) NOT NULL DEFAULT '',
+  `num` bigint(20) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_statistics_search` (`id`, `name`, `num`) VALUES
@@ -5756,11 +5756,11 @@ INSERT INTO `mall_statistics_search` (`id`, `name`, `num`) VALUES
 DROP TABLE IF EXISTS `mall_statistics_search_goods`;
 CREATE TABLE `mall_statistics_search_goods` (
   `id` bigint(20) NOT NULL,
-  `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '关键字',
-  `referer` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: PC 1: 手机网页 2: APP 3: 公众号 4: 小程序',
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0: PC 1: 手机网页 2: APP(0: android 1: ios) 3: 公众号 4: 小程序(0:微信 1:支付宝 2:百度 3:字节跳动 4:QQ)',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `goods_id` bigint(20) NOT NULL DEFAULT 0,
+  `name` varchar(128) NOT NULL DEFAULT '',
+  `referer` tinyint(1) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_statistics_search_goods` (`id`, `goods_id`, `name`, `referer`, `type`, `create_time`) VALUES
@@ -5770,10 +5770,10 @@ INSERT INTO `mall_statistics_search_goods` (`id`, `goods_id`, `name`, `referer`,
 DROP TABLE IF EXISTS `mall_system_manage`;
 CREATE TABLE `mall_system_manage` (
   `id` bigint(20) NOT NULL,
-  `title` varchar(200) NOT NULL DEFAULT '' COMMENT '名称',
-  `purview` text DEFAULT NULL COMMENT '权限',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态',
-  `lock` tinyint(1) NOT NULL DEFAULT 0 COMMENT '锁定'
+  `title` varchar(200) NOT NULL DEFAULT '',
+  `purview` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `lock` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_system_manage` (`id`, `title`, `purview`, `status`, `lock`) VALUES
@@ -5783,17 +5783,17 @@ INSERT INTO `mall_system_manage` (`id`, `title`, `purview`, `status`, `lock`) VA
 DROP TABLE IF EXISTS `mall_system_menu`;
 CREATE TABLE `mall_system_menu` (
   `id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT 0 COMMENT '父id',
-  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '名称',
-  `icon` varchar(128) NOT NULL DEFAULT '' COMMENT '图标',
-  `module` varchar(255) NOT NULL DEFAULT '' COMMENT '模块',
-  `controller` varchar(128) NOT NULL DEFAULT '' COMMENT '控制器',
-  `method` varchar(255) NOT NULL DEFAULT '' COMMENT '方法',
-  `param` varchar(255) NOT NULL DEFAULT '' COMMENT '参数',
-  `active` text NOT NULL COMMENT '选中',
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `icon` varchar(128) NOT NULL DEFAULT '',
+  `module` varchar(255) NOT NULL DEFAULT '',
+  `controller` varchar(128) NOT NULL DEFAULT '',
+  `method` varchar(255) NOT NULL DEFAULT '',
+  `param` varchar(255) NOT NULL DEFAULT '',
+  `active` text NOT NULL,
   `menu_table` varchar(128) DEFAULT '',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态',
-  `sort` int(11) NOT NULL DEFAULT 0 COMMENT '排序'
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `sort` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_system_menu` (`id`, `pid`, `name`, `icon`, `module`, `controller`, `method`, `param`, `active`, `menu_table`, `status`, `sort`) VALUES
@@ -5910,13 +5910,13 @@ INSERT INTO `mall_system_menu` (`id`, `pid`, `name`, `icon`, `module`, `controll
 DROP TABLE IF EXISTS `mall_system_purview`;
 CREATE TABLE `mall_system_purview` (
   `id` int(11) NOT NULL,
-  `pid` int(11) NOT NULL DEFAULT 0 COMMENT '父id',
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '名称',
-  `module` varchar(255) NOT NULL DEFAULT '' COMMENT '模块',
-  `controller` varchar(255) NOT NULL COMMENT '控制器',
-  `method` varchar(255) NOT NULL COMMENT '方法',
-  `param` varchar(255) NOT NULL DEFAULT '' COMMENT '参数',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态'
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(128) NOT NULL DEFAULT '',
+  `module` varchar(255) NOT NULL DEFAULT '',
+  `controller` varchar(255) NOT NULL,
+  `method` varchar(255) NOT NULL,
+  `param` varchar(255) NOT NULL DEFAULT '',
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_system_purview` (`id`, `pid`, `name`, `module`, `controller`, `method`, `param`, `status`) VALUES
@@ -6189,16 +6189,16 @@ INSERT INTO `mall_system_purview` (`id`, `pid`, `name`, `module`, `controller`, 
 DROP TABLE IF EXISTS `mall_system_users`;
 CREATE TABLE `mall_system_users` (
   `id` smallint(8) NOT NULL,
-  `role_id` smallint(8) NOT NULL DEFAULT 0 COMMENT '权限id',
-  `avatar` varchar(128) NOT NULL DEFAULT '' COMMENT '头像',
-  `username` varchar(255) NOT NULL DEFAULT '' COMMENT '用户名',
-  `password` varchar(64) NOT NULL COMMENT '密码',
+  `role_id` smallint(8) NOT NULL DEFAULT 0,
+  `avatar` varchar(128) NOT NULL DEFAULT '',
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(64) NOT NULL,
   `salt` char(6) NOT NULL DEFAULT '',
-  `email` varchar(64) NOT NULL DEFAULT '' COMMENT '邮箱',
-  `ip` varchar(32) NOT NULL DEFAULT '0' COMMENT 'ip地址',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态',
-  `lock` tinyint(1) NOT NULL DEFAULT 0 COMMENT '锁定',
-  `count` bigint(20) NOT NULL DEFAULT 0 COMMENT '登录次数',
+  `email` varchar(64) NOT NULL DEFAULT '',
+  `ip` varchar(32) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `lock` tinyint(1) NOT NULL DEFAULT 0,
+  `count` bigint(20) NOT NULL DEFAULT 0,
   `time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6208,11 +6208,11 @@ INSERT INTO `mall_system_users` (`id`, `role_id`, `avatar`, `username`, `passwor
 DROP TABLE IF EXISTS `mall_system_users_log`;
 CREATE TABLE `mall_system_users_log` (
   `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '管理员id',
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
   `type` tinyint(1) NOT NULL DEFAULT 0,
-  `intro` text NOT NULL COMMENT '说明',
-  `ip` varchar(30) NOT NULL DEFAULT '' COMMENT 'ip地址',
-  `time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `intro` text NOT NULL,
+  `ip` varchar(30) NOT NULL DEFAULT '',
+  `time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_system_users_log` (`id`, `user_id`, `type`, `intro`, `ip`, `time`) VALUES
@@ -6266,31 +6266,31 @@ INSERT INTO `mall_system_users_log` (`id`, `user_id`, `type`, `intro`, `ip`, `ti
 DROP TABLE IF EXISTS `mall_users`;
 CREATE TABLE `mall_users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `group_id` bigint(20) DEFAULT 0 COMMENT '分组ID',
-  `username` varchar(20) NOT NULL COMMENT '用户名',
-  `password` varchar(40) NOT NULL COMMENT '密码',
-  `email` varchar(255) DEFAULT '' COMMENT 'Email',
-  `avatar` varchar(255) DEFAULT '' COMMENT '头像',
-  `nickname` varchar(255) NOT NULL DEFAULT '' COMMENT '名称',
-  `realname` varchar(50) DEFAULT '' COMMENT '真实姓名',
-  `mobile` varchar(20) DEFAULT '' COMMENT '手机',
-  `birthday` int(10) NOT NULL DEFAULT 0 COMMENT '生日',
-  `sex` tinyint(1) NOT NULL DEFAULT 1 COMMENT '性别1男2女',
-  `exp` bigint(20) NOT NULL DEFAULT 0 COMMENT '经验值',
-  `point` bigint(20) NOT NULL DEFAULT 0 COMMENT '积分',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '用户状态 0正常 1 审核 2:锁定 3删除',
-  `tags` varchar(255) NOT NULL DEFAULT '' COMMENT '标签',
-  `is_spread` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0未开启',
-  `spread_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '上级推广员',
-  `spread_time` int(10) NOT NULL DEFAULT 0 COMMENT '推广员关联时间',
-  `pay_count` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户购买次数',
-  `spread_count` bigint(20) NOT NULL DEFAULT 0 COMMENT '下级人数',
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '用户余额',
-  `spread_amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '佣金金额',
-  `create_ip` varchar(128) NOT NULL DEFAULT '' COMMENT '注册时IP',
-  `last_ip` varchar(128) NOT NULL DEFAULT '' COMMENT '最后登录时IP',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '注册日期时间',
-  `last_login` int(10) DEFAULT 0 COMMENT '最后一次登录时间'
+  `group_id` bigint(20) DEFAULT 0,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `email` varchar(255) DEFAULT '',
+  `avatar` varchar(255) DEFAULT '',
+  `nickname` varchar(255) NOT NULL DEFAULT '',
+  `realname` varchar(50) DEFAULT '',
+  `mobile` varchar(20) DEFAULT '',
+  `birthday` int(10) NOT NULL DEFAULT 0,
+  `sex` tinyint(1) NOT NULL DEFAULT 1,
+  `exp` bigint(20) NOT NULL DEFAULT 0,
+  `point` bigint(20) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `tags` varchar(255) NOT NULL DEFAULT '',
+  `is_spread` tinyint(1) NOT NULL DEFAULT 0,
+  `spread_id` bigint(20) NOT NULL DEFAULT 0,
+  `spread_time` int(10) NOT NULL DEFAULT 0,
+  `pay_count` bigint(20) NOT NULL DEFAULT 0,
+  `spread_count` bigint(20) NOT NULL DEFAULT 0,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `spread_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `create_ip` varchar(128) NOT NULL DEFAULT '',
+  `last_ip` varchar(128) NOT NULL DEFAULT '',
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `last_login` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `avatar`, `nickname`, `realname`, `mobile`, `birthday`, `sex`, `exp`, `point`, `status`, `tags`, `is_spread`, `spread_id`, `spread_time`, `pay_count`, `spread_count`, `amount`, `spread_amount`, `create_ip`, `last_ip`, `create_time`, `last_login`) VALUES
@@ -6303,17 +6303,17 @@ INSERT INTO `mall_users` (`id`, `group_id`, `username`, `password`, `email`, `av
 DROP TABLE IF EXISTS `mall_users_address`;
 CREATE TABLE `mall_users_address` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户ID',
-  `accept_name` varchar(20) NOT NULL DEFAULT '' COMMENT '收货人姓名',
-  `zip` varchar(6) DEFAULT '' COMMENT '邮编',
-  `mobile` varchar(20) DEFAULT '' COMMENT '手机',
-  `phone` varchar(20) DEFAULT '' COMMENT '联系电话',
-  `country` bigint(20) DEFAULT 0 COMMENT '国ID',
-  `province` bigint(20) NOT NULL DEFAULT 0 COMMENT '省ID',
-  `city` bigint(20) NOT NULL DEFAULT 0 COMMENT '市ID',
-  `area` bigint(20) NOT NULL DEFAULT 0 COMMENT '区ID',
-  `address` varchar(250) NOT NULL COMMENT '收货地址',
-  `is_default` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否默认,0:为非默认,1:默认',
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `accept_name` varchar(20) NOT NULL DEFAULT '',
+  `zip` varchar(6) DEFAULT '',
+  `mobile` varchar(20) DEFAULT '',
+  `phone` varchar(20) DEFAULT '',
+  `country` bigint(20) DEFAULT 0,
+  `province` bigint(20) NOT NULL DEFAULT 0,
+  `city` bigint(20) NOT NULL DEFAULT 0,
+  `area` bigint(20) NOT NULL DEFAULT 0,
+  `address` varchar(250) NOT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT 0,
   `extends_info` text DEFAULT NULL,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -6331,10 +6331,10 @@ CREATE TABLE `mall_users_bonus` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT 0,
   `order_id` int(11) NOT NULL DEFAULT 0,
-  `bonus_id` int(11) NOT NULL COMMENT '关联的红包',
-  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '红包类型',
-  `used_time` int(10) NOT NULL DEFAULT 0 COMMENT '红包使用的时间',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '红包状态',
+  `bonus_id` int(11) NOT NULL,
+  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `used_time` int(10) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -6346,20 +6346,20 @@ INSERT INTO `mall_users_bonus` (`id`, `user_id`, `order_id`, `bonus_id`, `type`,
 DROP TABLE IF EXISTS `mall_users_comment`;
 CREATE TABLE `mall_users_comment` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `goods_id` bigint(20) NOT NULL COMMENT '商品ID',
-  `order_no` varchar(20) NOT NULL COMMENT '订单编号',
-  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `goods_id` bigint(20) NOT NULL,
+  `order_no` varchar(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `admin_id` bigint(20) NOT NULL DEFAULT 0,
-  `contents` text DEFAULT NULL COMMENT '评论内容',
-  `reply_content` text DEFAULT NULL COMMENT '回复评论内容',
-  `point` tinyint(1) NOT NULL DEFAULT 0 COMMENT '评论的分数',
-  `describes` tinyint(1) NOT NULL DEFAULT 0 COMMENT '描述',
-  `service` tinyint(1) NOT NULL DEFAULT 0 COMMENT '服务',
-  `logistics` tinyint(1) NOT NULL DEFAULT 0 COMMENT '物流',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '评论状态：0：未评论 1:已评论',
-  `comment_time` int(10) NOT NULL DEFAULT 0 COMMENT '评论时间',
-  `reply_time` int(10) NOT NULL DEFAULT 0 COMMENT '回复评论时间',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
+  `contents` text DEFAULT NULL,
+  `reply_content` text DEFAULT NULL,
+  `point` tinyint(1) NOT NULL DEFAULT 0,
+  `describes` tinyint(1) NOT NULL DEFAULT 0,
+  `service` tinyint(1) NOT NULL DEFAULT 0,
+  `logistics` tinyint(1) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `comment_time` int(10) NOT NULL DEFAULT 0,
+  `reply_time` int(10) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users_comment` (`id`, `goods_id`, `order_no`, `user_id`, `admin_id`, `contents`, `reply_content`, `point`, `describes`, `service`, `logistics`, `status`, `comment_time`, `reply_time`, `create_time`) VALUES
@@ -6370,21 +6370,21 @@ DROP TABLE IF EXISTS `mall_users_consult`;
 CREATE TABLE `mall_users_consult` (
   `id` bigint(20) NOT NULL,
   `pid` bigint(20) NOT NULL DEFAULT 0,
-  `admin_id` bigint(20) DEFAULT 0 COMMENT '回复的管理员ID',
-  `user_id` bigint(20) DEFAULT 0 COMMENT '咨询人会员ID，非会员为空',
-  `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '产品ID',
-  `content` text DEFAULT NULL COMMENT '回复内容',
-  `status` tinyint(1) DEFAULT 0 COMMENT '0：待回复 1已回复',
-  `create_time` int(10) DEFAULT 0 COMMENT '咨询时间',
-  `reply_time` int(10) DEFAULT 0 COMMENT '回复时间'
+  `admin_id` bigint(20) DEFAULT 0,
+  `user_id` bigint(20) DEFAULT 0,
+  `goods_id` bigint(20) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) DEFAULT 0,
+  `create_time` int(10) DEFAULT 0,
+  `reply_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_users_favorite`;
 CREATE TABLE `mall_users_favorite` (
   `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户id',
-  `goods_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '商品id',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `goods_id` bigint(20) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users_favorite` (`id`, `user_id`, `goods_id`, `create_time`) VALUES
@@ -6393,10 +6393,10 @@ INSERT INTO `mall_users_favorite` (`id`, `user_id`, `goods_id`, `create_time`) V
 DROP TABLE IF EXISTS `mall_users_group`;
 CREATE TABLE `mall_users_group` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(32) NOT NULL COMMENT '组名',
-  `discount` decimal(15,2) NOT NULL DEFAULT 100.00 COMMENT '折扣率',
-  `minexp` bigint(20) DEFAULT NULL COMMENT '最小经验',
-  `maxexp` bigint(20) DEFAULT NULL COMMENT '最大经验'
+  `name` varchar(32) NOT NULL,
+  `discount` decimal(15,2) NOT NULL DEFAULT 100.00,
+  `minexp` bigint(20) DEFAULT NULL,
+  `maxexp` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users_group` (`id`, `name`, `discount`, `minexp`, `maxexp`) VALUES
@@ -6410,16 +6410,16 @@ INSERT INTO `mall_users_group` (`id`, `name`, `discount`, `minexp`, `maxexp`) VA
 DROP TABLE IF EXISTS `mall_users_log`;
 CREATE TABLE `mall_users_log` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `order_no` varchar(255) NOT NULL DEFAULT '' COMMENT '订单编号',
-  `user_id` int(10) NOT NULL DEFAULT 0 COMMENT '用户id',
-  `admin_id` bigint(20) DEFAULT 0 COMMENT '管理员ID',
-  `action` tinyint(1) NOT NULL DEFAULT 0 COMMENT '动作类型 0金额 1积分 2经验 3退款 4佣金',
-  `operation` tinyint(1) NOT NULL DEFAULT 0 COMMENT '操作 0充值 1提现',
-  `amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '金额',
-  `point` int(10) NOT NULL DEFAULT 0 COMMENT '积分',
-  `exp` int(10) NOT NULL DEFAULT 0 COMMENT '经验',
-  `description` text DEFAULT NULL COMMENT '说明',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '发生时间'
+  `order_no` varchar(255) NOT NULL DEFAULT '',
+  `user_id` int(10) NOT NULL DEFAULT 0,
+  `admin_id` bigint(20) DEFAULT 0,
+  `action` tinyint(1) NOT NULL DEFAULT 0,
+  `operation` tinyint(1) NOT NULL DEFAULT 0,
+  `amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `point` int(10) NOT NULL DEFAULT 0,
+  `exp` int(10) NOT NULL DEFAULT 0,
+  `description` text DEFAULT NULL,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users_log` (`id`, `order_no`, `user_id`, `admin_id`, `action`, `operation`, `amount`, `point`, `exp`, `description`, `create_time`) VALUES
@@ -6431,15 +6431,15 @@ INSERT INTO `mall_users_log` (`id`, `order_no`, `user_id`, `admin_id`, `action`,
 DROP TABLE IF EXISTS `mall_users_rechange`;
 CREATE TABLE `mall_users_rechange` (
   `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL COMMENT '用户id',
-  `pay_type` int(11) NOT NULL DEFAULT 0 COMMENT '支付类型',
-  `order_no` varchar(255) NOT NULL DEFAULT '' COMMENT '充值单号',
-  `order_amount` decimal(15,2) NOT NULL DEFAULT 0.00 COMMENT '充值金额',
-  `payment_name` varchar(80) NOT NULL COMMENT '充值方式名称',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '充值状态 0:付款中 1:充值成功 2：充值失败',
-  `transaction_id` varchar(255) NOT NULL DEFAULT '' COMMENT '平台流水号',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间',
-  `pay_time` int(10) NOT NULL DEFAULT 0 COMMENT '支付时间'
+  `user_id` bigint(20) NOT NULL,
+  `pay_type` int(11) NOT NULL DEFAULT 0,
+  `order_no` varchar(255) NOT NULL DEFAULT '',
+  `order_amount` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `payment_name` varchar(80) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `transaction_id` varchar(255) NOT NULL DEFAULT '',
+  `create_time` int(10) NOT NULL DEFAULT 0,
+  `pay_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users_rechange` (`id`, `user_id`, `pay_type`, `order_no`, `order_amount`, `payment_name`, `status`, `transaction_id`, `create_time`, `pay_time`) VALUES
@@ -6452,19 +6452,19 @@ INSERT INTO `mall_users_rechange` (`id`, `user_id`, `pay_type`, `order_no`, `ord
 DROP TABLE IF EXISTS `mall_users_sms`;
 CREATE TABLE `mall_users_sms` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL DEFAULT 0 COMMENT '用户id',
-  `mobile` varchar(255) NOT NULL DEFAULT '' COMMENT '手机',
-  `code` varchar(32) NOT NULL DEFAULT '' COMMENT '验证码',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态（0：开 1：关）',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '生成时间'
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `mobile` varchar(255) NOT NULL DEFAULT '',
+  `code` varchar(32) NOT NULL DEFAULT '',
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_users_tags`;
 CREATE TABLE `mall_users_tags` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL COMMENT '名称',
-  `intro` text NOT NULL COMMENT '备注',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间'
+  `name` varchar(128) NOT NULL,
+  `intro` text NOT NULL,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users_tags` (`id`, `name`, `intro`, `create_time`) VALUES
@@ -6475,14 +6475,14 @@ INSERT INTO `mall_users_tags` (`id`, `name`, `intro`, `create_time`) VALUES
 DROP TABLE IF EXISTS `mall_users_token`;
 CREATE TABLE `mall_users_token` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户id',
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
   `token` varchar(255) NOT NULL DEFAULT '',
-  `referer` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:app',
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:android 1:IOS	',
-  `brand` varchar(128) NOT NULL DEFAULT '' COMMENT '手机品牌',
-  `model` varchar(255) NOT NULL DEFAULT '' COMMENT '手机型号',
-  `ip` varchar(255) NOT NULL DEFAULT '' COMMENT 'ip地址',
-  `expire_time` int(10) NOT NULL DEFAULT 0 COMMENT '时间'
+  `referer` tinyint(1) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `brand` varchar(128) NOT NULL DEFAULT '',
+  `model` varchar(255) NOT NULL DEFAULT '',
+  `ip` varchar(255) NOT NULL DEFAULT '',
+  `expire_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users_token` (`id`, `user_id`, `token`, `referer`, `type`, `brand`, `model`, `ip`, `expire_time`) VALUES
@@ -6560,19 +6560,19 @@ DROP TABLE IF EXISTS `mall_users_withdraw_log`;
 CREATE TABLE `mall_users_withdraw_log` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) DEFAULT NULL,
-  `withdraw_type` tinyint(1) DEFAULT 0 COMMENT '提现类型：0 佣金 1 余额',
-  `bank_name` varchar(128) NOT NULL DEFAULT '' COMMENT '银行名',
-  `bank_real_name` varchar(32) NOT NULL DEFAULT '' COMMENT '持卡人',
-  `type` tinyint(1) DEFAULT 1 COMMENT '1 银行卡 2 支付宝 3微信',
-  `code` varchar(32) DEFAULT '' COMMENT '银行卡',
-  `address` varchar(256) DEFAULT '' COMMENT '开户地址',
-  `account` varchar(64) DEFAULT '' COMMENT '账号',
-  `price` decimal(15,2) DEFAULT 0.00 COMMENT '提现金额',
+  `withdraw_type` tinyint(1) DEFAULT 0,
+  `bank_name` varchar(128) NOT NULL DEFAULT '',
+  `bank_real_name` varchar(32) NOT NULL DEFAULT '',
+  `type` tinyint(1) DEFAULT 1,
+  `code` varchar(32) DEFAULT '',
+  `address` varchar(256) DEFAULT '',
+  `account` varchar(64) DEFAULT '',
+  `price` decimal(15,2) DEFAULT 0.00,
   `mark` varchar(512) DEFAULT NULL,
-  `msg` varchar(255) DEFAULT '' COMMENT '说明',
-  `status` tinyint(2) DEFAULT 0 COMMENT '0 审核中 1 已提现 2 未通过',
-  `create_time` int(10) DEFAULT 0 COMMENT '添加时间',
-  `update_time` int(10) DEFAULT 0 COMMENT '处理时间'
+  `msg` varchar(255) DEFAULT '',
+  `status` tinyint(2) DEFAULT 0,
+  `create_time` int(10) DEFAULT 0,
+  `update_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `mall_users_withdraw_log` (`id`, `user_id`, `withdraw_type`, `bank_name`, `bank_real_name`, `type`, `code`, `address`, `account`, `price`, `mark`, `msg`, `status`, `create_time`, `update_time`) VALUES
@@ -6596,22 +6596,22 @@ CREATE TABLE `mall_version` (
 DROP TABLE IF EXISTS `mall_wechat_keys`;
 CREATE TABLE `mall_wechat_keys` (
   `id` bigint(20) NOT NULL,
-  `appid` char(100) NOT NULL DEFAULT '' COMMENT '公众号APPID',
-  `type` varchar(20) NOT NULL DEFAULT '' COMMENT '类型(text,image,news)',
-  `keys` varchar(100) DEFAULT NULL COMMENT '关键字',
-  `content` text DEFAULT NULL COMMENT '文本内容',
-  `image_url` varchar(255) DEFAULT '' COMMENT '图片链接',
-  `voice_url` varchar(255) DEFAULT '' COMMENT '语音链接',
-  `music_title` varchar(100) DEFAULT '' COMMENT '音乐标题',
-  `music_url` varchar(255) DEFAULT '' COMMENT '音乐链接',
-  `music_image` varchar(255) DEFAULT '' COMMENT '缩略图片',
-  `music_desc` varchar(255) DEFAULT '' COMMENT '音乐描述',
-  `video_title` varchar(100) DEFAULT '' COMMENT '视频标题',
-  `video_url` varchar(255) DEFAULT '' COMMENT '视频URL',
-  `video_desc` varchar(255) DEFAULT '' COMMENT '视频描述',
-  `news_id` bigint(20) DEFAULT 0 COMMENT '图文ID',
-  `sort` bigint(20) DEFAULT 0 COMMENT '排序字段',
-  `status` tinyint(1) DEFAULT 1 COMMENT '状态(0启用,1:禁用)',
+  `appid` char(100) NOT NULL DEFAULT '',
+  `type` varchar(20) NOT NULL DEFAULT '',
+  `keys` varchar(100) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT '',
+  `voice_url` varchar(255) DEFAULT '',
+  `music_title` varchar(100) DEFAULT '',
+  `music_url` varchar(255) DEFAULT '',
+  `music_image` varchar(255) DEFAULT '',
+  `music_desc` varchar(255) DEFAULT '',
+  `video_title` varchar(100) DEFAULT '',
+  `video_url` varchar(255) DEFAULT '',
+  `video_desc` varchar(255) DEFAULT '',
+  `news_id` bigint(20) DEFAULT 0,
+  `sort` bigint(20) DEFAULT 0,
+  `status` tinyint(1) DEFAULT 1,
   `admin_id` int(11) NOT NULL DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-关键字';
@@ -6619,24 +6619,24 @@ CREATE TABLE `mall_wechat_keys` (
 DROP TABLE IF EXISTS `mall_wechat_media`;
 CREATE TABLE `mall_wechat_media` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `appid` varchar(100) DEFAULT '' COMMENT '公众号ID',
-  `md5` varchar(32) DEFAULT '' COMMENT '文件md5',
-  `type` varchar(20) DEFAULT '' COMMENT '媒体类型',
-  `media_id` varchar(100) DEFAULT '' COMMENT '永久素材MediaID',
-  `local_url` varchar(300) DEFAULT '' COMMENT '本地文件链接',
-  `media_url` varchar(300) DEFAULT '' COMMENT '远程图片链接',
+  `appid` varchar(100) DEFAULT '',
+  `md5` varchar(32) DEFAULT '',
+  `type` varchar(20) DEFAULT '',
+  `media_id` varchar(100) DEFAULT '',
+  `local_url` varchar(300) DEFAULT '',
+  `media_url` varchar(300) DEFAULT '',
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-素材';
 
 DROP TABLE IF EXISTS `mall_wechat_mini_subscribe_message`;
 CREATE TABLE `mall_wechat_mini_subscribe_message` (
   `id` int(11) NOT NULL,
-  `temp_id` varchar(255) DEFAULT NULL COMMENT '模板ID',
-  `sign` varchar(32) DEFAULT NULL COMMENT '标识',
-  `name` varchar(64) DEFAULT NULL COMMENT '名称',
-  `content` longtext DEFAULT NULL COMMENT '模板内容',
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态：0开启',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '创建时间'
+  `temp_id` varchar(255) DEFAULT NULL,
+  `sign` varchar(32) DEFAULT NULL,
+  `name` varchar(64) DEFAULT NULL,
+  `content` longtext DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='小程序订阅消息表';
 
 INSERT INTO `mall_wechat_mini_subscribe_message` (`id`, `temp_id`, `sign`, `name`, `content`, `status`, `create_time`) VALUES
@@ -6648,64 +6648,64 @@ INSERT INTO `mall_wechat_mini_subscribe_message` (`id`, `temp_id`, `sign`, `name
 DROP TABLE IF EXISTS `mall_wechat_news`;
 CREATE TABLE `mall_wechat_news` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `admin_id` int(11) DEFAULT 0 COMMENT '创建人',
-  `media_id` varchar(100) DEFAULT '' COMMENT '永久素材MediaID',
-  `local_url` varchar(300) DEFAULT '' COMMENT '永久素材外网URL',
-  `article_id` varchar(60) DEFAULT '' COMMENT '关联图文ID(用英文逗号做分割)',
-  `is_deleted` tinyint(1) UNSIGNED DEFAULT 0 COMMENT '删除状态(0未删除,1已删除)',
-  `create_time` int(10) DEFAULT 0 COMMENT '创建时间',
+  `admin_id` int(11) DEFAULT 0,
+  `media_id` varchar(100) DEFAULT '',
+  `local_url` varchar(300) DEFAULT '',
+  `article_id` varchar(60) DEFAULT '',
+  `is_deleted` tinyint(1) UNSIGNED DEFAULT 0,
+  `create_time` int(10) DEFAULT 0,
   `update_time` int(10) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-图文';
 
 DROP TABLE IF EXISTS `mall_wechat_news_article`;
 CREATE TABLE `mall_wechat_news_article` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(50) DEFAULT '' COMMENT '素材标题',
-  `local_url` varchar(300) DEFAULT '' COMMENT '永久素材显示URL',
-  `show_cover_pic` tinyint(4) UNSIGNED DEFAULT 0 COMMENT '显示封面(0不显示,1显示)',
-  `author` varchar(20) DEFAULT '' COMMENT '文章作者',
-  `digest` varchar(300) DEFAULT '' COMMENT '摘要内容',
-  `content` longtext DEFAULT NULL COMMENT '图文内容',
-  `content_source_url` varchar(200) DEFAULT '' COMMENT '原文地址',
-  `visit` bigint(20) UNSIGNED DEFAULT 0 COMMENT '阅读数量',
+  `title` varchar(50) DEFAULT '',
+  `local_url` varchar(300) DEFAULT '',
+  `show_cover_pic` tinyint(4) UNSIGNED DEFAULT 0,
+  `author` varchar(20) DEFAULT '',
+  `digest` varchar(300) DEFAULT '',
+  `content` longtext DEFAULT NULL,
+  `content_source_url` varchar(200) DEFAULT '',
+  `visit` bigint(20) UNSIGNED DEFAULT 0,
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-文章';
 
 DROP TABLE IF EXISTS `mall_wechat_qrcode`;
 CREATE TABLE `mall_wechat_qrcode` (
   `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '用户ID',
-  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '小程序码类型',
-  `page` varchar(255) NOT NULL DEFAULT '' COMMENT '页面路径',
-  `path` varchar(255) NOT NULL DEFAULT '' COMMENT '保存路径',
-  `create_time` int(10) NOT NULL DEFAULT 0 COMMENT '生成时间'
+  `user_id` bigint(20) NOT NULL DEFAULT 0,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `page` varchar(255) NOT NULL DEFAULT '',
+  `path` varchar(255) NOT NULL DEFAULT '',
+  `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `mall_wechat_users`;
 CREATE TABLE `mall_wechat_users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) NOT NULL DEFAULT 0,
-  `appid` varchar(50) DEFAULT '' COMMENT '公众号APPID',
-  `unionid` varchar(100) DEFAULT '' COMMENT '粉丝unionid',
-  `openid` varchar(100) DEFAULT '' COMMENT '粉丝openid',
-  `mp_openid` varchar(100) NOT NULL DEFAULT '' COMMENT '微信小程序openid',
-  `tagid_list` varchar(100) DEFAULT '' COMMENT '粉丝标签id',
-  `is_black` tinyint(1) UNSIGNED DEFAULT 0 COMMENT '是否为黑名单状态',
-  `subscribe` tinyint(1) UNSIGNED DEFAULT 0 COMMENT '关注状态(0未关注,1已关注)',
-  `nickname` varchar(200) DEFAULT '' COMMENT '用户昵称',
-  `sex` tinyint(1) UNSIGNED DEFAULT 0 COMMENT '用户性别(1男性,2女性,0未知)',
-  `country` varchar(50) DEFAULT '' COMMENT '用户所在国家',
-  `province` varchar(50) DEFAULT '' COMMENT '用户所在省份',
-  `city` varchar(50) DEFAULT '' COMMENT '用户所在城市',
-  `language` varchar(50) DEFAULT '' COMMENT '用户的语言(zh_CN)',
-  `headimgurl` varchar(500) DEFAULT '' COMMENT '用户头像',
-  `subscribe_time` int(10) UNSIGNED DEFAULT 0 COMMENT '关注时间',
-  `subscribe_create_time` int(10) DEFAULT 0 COMMENT '关注时间',
-  `mp_create_time` int(10) NOT NULL DEFAULT 0 COMMENT '小程序关联时间',
-  `remark` varchar(50) DEFAULT '' COMMENT '备注',
-  `subscribe_scene` varchar(200) DEFAULT '' COMMENT '扫码关注场景',
-  `qr_scene` varchar(100) DEFAULT '' COMMENT '二维码场景值',
-  `qr_scene_str` varchar(200) DEFAULT '' COMMENT '二维码场景内容',
+  `appid` varchar(50) DEFAULT '',
+  `unionid` varchar(100) DEFAULT '',
+  `openid` varchar(100) DEFAULT '',
+  `mp_openid` varchar(100) NOT NULL DEFAULT '',
+  `tagid_list` varchar(100) DEFAULT '',
+  `is_black` tinyint(1) UNSIGNED DEFAULT 0,
+  `subscribe` tinyint(1) UNSIGNED DEFAULT 0,
+  `nickname` varchar(200) DEFAULT '',
+  `sex` tinyint(1) UNSIGNED DEFAULT 0,
+  `country` varchar(50) DEFAULT '',
+  `province` varchar(50) DEFAULT '',
+  `city` varchar(50) DEFAULT '',
+  `language` varchar(50) DEFAULT '',
+  `headimgurl` varchar(500) DEFAULT '',
+  `subscribe_time` int(10) UNSIGNED DEFAULT 0,
+  `subscribe_create_time` int(10) DEFAULT 0,
+  `mp_create_time` int(10) NOT NULL DEFAULT 0,
+  `remark` varchar(50) DEFAULT '',
+  `subscribe_scene` varchar(200) DEFAULT '',
+  `qr_scene` varchar(100) DEFAULT '',
+  `qr_scene_str` varchar(200) DEFAULT '',
   `create_time` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-粉丝';
 
@@ -6715,10 +6715,10 @@ INSERT INTO `mall_wechat_users` (`id`, `user_id`, `appid`, `unionid`, `openid`, 
 DROP TABLE IF EXISTS `mall_wechat_users_tags`;
 CREATE TABLE `mall_wechat_users_tags` (
   `id` bigint(20) NOT NULL,
-  `appid` varchar(50) DEFAULT '' COMMENT '公众号APPID',
-  `name` varchar(35) DEFAULT NULL COMMENT '标签名称',
-  `count` bigint(20) UNSIGNED DEFAULT 0 COMMENT '总数',
-  `create_at` timestamp NULL DEFAULT current_timestamp() COMMENT '创建日期'
+  `appid` varchar(50) DEFAULT '',
+  `name` varchar(35) DEFAULT NULL,
+  `count` bigint(20) UNSIGNED DEFAULT 0,
+  `create_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -7034,7 +7034,7 @@ ALTER TABLE `mall_order_collection`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 ALTER TABLE `mall_order_delivery`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '发货单ID', AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 ALTER TABLE `mall_order_goods`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
