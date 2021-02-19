@@ -405,17 +405,6 @@
 			}
 		},
 		{
-			"path": "pages/bill/rechange",
-			"style": {
-				"navigationBarBackgroundColor": "#B91922",
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "充值中心",
-				"app-plus": {
-					"bounce" : "none" // 去除下拉阴影
-				}
-			}
-		},
-		{
 			"path": "pages/bill/cashlist",
 			"style": {
 				"navigationBarBackgroundColor": "#B91922",

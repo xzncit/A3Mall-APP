@@ -1,7 +1,6 @@
 <template>
 	<view>
 		<view class="header">
-			<view class="rechange" @click="$utils.navigateTo('bill/rechange')">充值 &gt;</view>
 			<view class="info">
 				<view>总资产(元)</view>
 				<view>{{amount}}</view>

@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.0.0-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.0.3-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -37,7 +37,8 @@
 ## 安装A3Mall
 
 ```html
-下载好程序文件，解压上传到web根目录
+下载好程序文件，如果没有安装 composer 请先安装，安装好后执行 composer install
+下载依赖成功后，将程序文件上传到web根目录
 需要绑定域名访问到public目录，确保其它目录不在WEB目录下面
 Linux下需要给程序根目录下的runtime目录权限
 访问：http://域名.com/install
