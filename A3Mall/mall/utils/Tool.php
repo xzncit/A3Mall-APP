@@ -19,8 +19,8 @@ class Tool {
         if(empty($image)){
             $image = "/static/images/default.jpg";
         }
-
-        return $domain . $image;
+        // 处理windows 下 "\" 路径问题
+        return $domain . str_replace('\\','/',$image);
     }
 
     public static function removeContentAttr($content){
