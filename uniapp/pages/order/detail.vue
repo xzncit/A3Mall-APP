@@ -334,17 +334,17 @@
 			},
 			confirm(){
 				this.$utils.navigateTo("order/confirm_delivery",{
-					order_id: this.orderId
+					id: this.orderId
 				});
 			},
 			refund(){
 				this.$utils.navigateTo("order/refund",{
-					order_id: this.orderId
+					id: this.orderId
 				});
 			},
 			evaluate(){
 				this.$utils.navigateTo("order/evaluate",{
-					order_id: this.orderId
+					id: this.orderId
 				});
 			},
 			cancel(){

@@ -34,6 +34,7 @@
  
 <script>
 	import loading from '../../components/tool/loading'
+	import { checkPhone } from '../../common/check';
 	export default {
 		components:{
 			loading
@@ -86,7 +87,7 @@
 					this.isSubmit = false;
 					this.$utils.msg("请填写手机号码！");
 					return ;
-				}else if(!checkPhone(this.phone)){
+				}else if(!validation.checkPhone(this.phone)){
 					this.isSubmit = false;
 					this.$utils.msg("您填写的手机号码不正确！");
 					return ;

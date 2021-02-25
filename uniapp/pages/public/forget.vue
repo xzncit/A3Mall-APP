@@ -36,6 +36,7 @@
  
 <script>
 	import loading from '../../components/tool/loading'
+	import { checkPhone } from '../../common/check';
 	export default {
 		components:{
 			loading
