@@ -131,7 +131,25 @@ class Payment {
             case "wechat-app":
                 try{
                     $web_name = Setting::get("web_name",true);
+
+                    $config = Db::name("payment")->where("code","wechat-app")->find();
+                    if(empty($config["config"])){
+                        throw new \Exception("请配置微信支付");
+                    }
+
+                    $array = json_decode($config["config"],true);
+                    if(empty($array["app_id"])){
+                        throw new \Exception("请配置微信支付 - appid");
+                    }
+
+                    if(empty($array["mch_id"])){
+                        throw new \Exception("请配置微信支付 - mch_id");
+                    }
+
                     $rs = WeChat::Payment()->createOrder([
+                        'appid'            => $array["app_id"],
+                        'mch_id'           => $array["mch_id"],
+                        'mch_key'          => $array["mch_key"],
                         'body'             => $web_name . $goods_title,
                         'total_fee'        => $order["order_amount"] * 100,
                         'trade_type'       => 'APP',
@@ -140,7 +158,7 @@ class Payment {
                         'spbill_create_ip' => Request::ip(),
                     ]);
 
-                    $params = WeChat::Payment()->createParamsForApp($rs["prepay_id"]);
+                    $params = WeChat::Payment()->createParamsForApp($rs["prepay_id"],$array);
                     $result = [
                         "pay"=>1,
                         "order_id"=>$order["id"],

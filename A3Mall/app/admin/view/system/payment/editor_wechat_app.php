@@ -21,13 +21,23 @@
                             <div class="layui-input-block">
                                 <input type="text" name="config[app_id]" value="{$data.config.app_id|default=''}" lay-reqtext="请填写微信开放平台审核通过的应用APPID" lay-verify="required" placeholder="请输入微信商户编号" autocomplete="off" class="layui-input">
                             </div>
+                            <div class="layui-form-mid layui-word-aux">微信开放平台审核通过的应用APPID（请登录open.weixin.qq.com查看，注意与公众号的APPID不同）</div>
                         </div>
 
                         <div class="layui-form-item">
                             <label class="layui-form-label">MCH_ID</label>
                             <div class="layui-input-block">
-                                <input type="text" name="config[mch_id]" value="{$data.config.mch_id|default=''}" lay-reqtext="请填写微信支付分配的商户号" lay-verify="required" placeholder="请输入微信商户编号" autocomplete="off" class="layui-input">
+                                <input type="text" name="config[mch_id]" value="{$data.config.mch_id|default=''}" lay-reqtext="请填写微信商户编号" lay-verify="required" placeholder="请输入微信商户编号" autocomplete="off" class="layui-input">
                             </div>
+                            <div class="layui-form-mid layui-word-aux">微信商户编号</div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">MCH_KEY</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="config[mch_key]" value="{$data.config.mch_key|default=''}" lay-reqtext="请填写微信商户密钥" lay-verify="required" placeholder="请输入微信商户密钥" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">微信商户密钥</div>
                         </div>
 
                         <div class="layui-form-item">

@@ -83,7 +83,14 @@ class Index {
                     case "wechat-mini":
                         $pay = new BasicWeMiniPay();
                         break;
-                    case "wechat-app": // 待实现
+                    case "wechat-app":
+                        $config = Db::name("payment")->where("code","wechat-app")->find();
+                        if(empty($config["config"])){
+                            throw new \Exception("请配置微信支付");
+                        }
+
+                        $array = json_decode($config["config"],true);
+                        $pay = new BasicWePay($array);
                     default:
                         throw new \Exception("您选择的支付方式不存在",0);
                 }
@@ -159,7 +166,14 @@ class Index {
                 case "wechat-mini":
                     $pay = new BasicWeMiniPay();
                     break;
-                case "wechat-app": // 待实现
+                case "wechat-app":
+                    $config = Db::name("payment")->where("code","wechat-app")->find();
+                    if(empty($config["config"])){
+                        throw new \Exception("请配置微信支付");
+                    }
+
+                    $array = json_decode($config["config"],true);
+                    $pay = new BasicWePay($array);
                 default:
                     throw new \Exception("您选择的支付方式不存在",0);
             }

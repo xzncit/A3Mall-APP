@@ -61,8 +61,8 @@ class Payment{
      * @param string $prepay_id 统一下单预支付码
      * @return array
      */
-    public function createParamsForApp($prepay_id){
-        return Order::instance()->appParams($prepay_id);
+    public function createParamsForApp($prepay_id,$options=[]){
+        return Order::instance()->appParams($prepay_id,$options);
     }
 
     /**

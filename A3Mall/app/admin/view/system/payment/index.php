@@ -71,7 +71,7 @@
             }
             switch(data.code) {
                 case "wechat-app":
-                    window.location.href = '{:createUrl("wechat.index/pay")}';
+                    window.location.href = '{:createUrl("editor")}?id='+data.id;
                     break;
                 case "alipay-app":
                     window.location.href = '{:createUrl("editor")}?id='+data.id;

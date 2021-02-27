@@ -10,6 +10,7 @@ namespace mall\library\wechat\chat\payment;
 
 use mall\library\wechat\chat\BasicWePay;
 use mall\library\wechat\chat\lib\Utils;
+use think\facade\Db;
 
 class Order extends BasicWePay {
 
@@ -84,12 +85,13 @@ class Order extends BasicWePay {
     /**
      * 获取微信App支付参数
      * @param string $prepayId 统一下单预支付码
+     * @param array  $options
      * @return array
      */
-    public function appParams($prepayId){
+    public function appParams($prepayId,$options){
         $data = [
-            'appid'     => $this->config["appid"],
-            'partnerid' => $this->config["mch_id"],
+            'appid'     => $options["app_id"],
+            'partnerid' => $options["mch_id"],
             'prepayid'  => (string)$prepayId,
             'package'   => 'Sign=WXPay',
             'timestamp' => (string)time(),

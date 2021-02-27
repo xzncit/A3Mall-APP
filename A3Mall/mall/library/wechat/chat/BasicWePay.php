@@ -19,9 +19,13 @@ class BasicWePay extends CommonWeChat {
     protected $params;
     protected static $cache;
 
-    public function __construct(){
-        $this->config = WeConfig::get("wepay");
-        $this->config["appid"] = WeConfig::get("wechat.appid");
+    public function __construct($config = []){
+        if(!empty($config)){
+            $this->config = $config;
+        }else{
+            $this->config = WeConfig::get("wepay");
+            $this->config["appid"] = WeConfig::get("wechat.appid");
+        }
 
         if(empty($this->config["mch_id"])){
             throw new \Exception("支付 mch_id 为空",0);
@@ -120,6 +124,12 @@ class BasicWePay extends CommonWeChat {
                 throw new \Exception("Missing Config -- ssl_key", '0');
             }
         }
+
+        $config = [];
+        empty($data["appid"]) || $config["appid"] = $data["appid"];
+        empty($data["mch_id"]) || $config["mch_id"] = $data["mch_id"];
+        empty($data["mch_key"]) || $config["mch_key"] = $data["mch_key"];
+        empty($config) || $this->config = array_merge($this->config,$config);
 
         $params = array_merge($this->params,$data);
         $needSignType && ($params['sign_type'] = strtoupper($signType));
