@@ -53,7 +53,13 @@
             "sdkConfigs" : {
                 "ad" : {},
                 "oauth" : {},
-                "payment" : {},
+                "payment" : {
+                    "weixin" : {
+                        "__platform__" : [ "android" ],
+                        "appid" : "",
+                        "UniversalLinks" : ""
+                    }
+                },
                 "share" : {},
                 "speech" : {
                     "ifly" : {}

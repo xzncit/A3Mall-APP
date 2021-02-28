@@ -128,8 +128,13 @@ class BasicWePay extends CommonWeChat {
         $config = [];
         empty($data["appid"]) || $config["appid"] = $data["appid"];
         empty($data["mch_id"]) || $config["mch_id"] = $data["mch_id"];
-        empty($data["mch_key"]) || $config["mch_key"] = $data["mch_key"];
+        if(!empty($data["mch_key"])) {
+            $config["mch_key"] = $data["mch_key"];
+            unset($data["mch_key"]);
+        }
         empty($config) || $this->config = array_merge($this->config,$config);
+
+
 
         $params = array_merge($this->params,$data);
         $needSignType && ($params['sign_type'] = strtoupper($signType));

@@ -641,8 +641,24 @@ class Order extends Base {
         $payment_id = Request::param("payment_id","","trim,strip_tags");
         $source = Request::param("source","","intval");
 
+        if(!in_array($source,[4])){
+            $source = 4;
+        }
+
         if($payment_id == 'wechat'){
-            $payment_id = $source == 2 ? "wechat" : "wechat-h5";
+            switch($source){
+                case 4:
+                    $payment_id = "wechat-app";
+                    break;
+            }
+        }
+
+        if($payment_id == 'alipay'){
+            switch ($source){
+                case 4:
+                    $payment_id = "alipay-app";
+                    break;
+            }
         }
 
         if(($payment = Db::name("payment")->where("code",$payment_id)->find()) == false){

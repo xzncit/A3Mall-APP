@@ -314,7 +314,7 @@
 				//console.log(orderInfo);
 				let that = this;
 				uni.requestPayment({
-					type,
+					provider: type,
 					orderInfo: orderInfo,
 					success: (e) => {
 						uni.showToast({
