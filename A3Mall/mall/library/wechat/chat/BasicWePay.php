@@ -27,13 +27,13 @@ class BasicWePay extends CommonWeChat {
             $this->config["appid"] = WeConfig::get("wechat.appid");
         }
 
-        if(empty($this->config["mch_id"])){
-            throw new \Exception("支付 mch_id 为空",0);
-        }
-
-        if(empty($this->config["mch_key"])){
-            throw new \Exception("支付 mch_key 为空",0);
-        }
+//        if(empty($this->config["mch_id"])){
+//            throw new \Exception("支付 mch_id 为空",0);
+//        }
+//
+//        if(empty($this->config["mch_key"])){
+//            throw new \Exception("支付 mch_key 为空",0);
+//        }
 
         $this->params = [
             'appid'     => trim($this->config["appid"]),
