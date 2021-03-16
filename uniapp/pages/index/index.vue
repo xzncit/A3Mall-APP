@@ -16,6 +16,7 @@
 							class="have-none" 
 							v-for="(image, index) in images" 
 							:key="index"
+							@click="sliderJump(image.url)"
 						>
 							<image 
 							 :src="image.photo" 
@@ -177,6 +178,11 @@
 			})
 		},
 		methods: {
+			sliderJump(url){
+				uni.navigateTo({
+					url: url
+				})
+			},
 			catJump(data){
 				console.log(data);
 				if(data.url == 'category/index'){

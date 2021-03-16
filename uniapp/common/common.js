@@ -4,7 +4,7 @@ export function jump(value){
 	if(value.url == ""){
 		return ;
 	}
-	console.log(value);
+	
 	switch (value.type+"") {
 		case "1":
 			//window.location.href = value.url;

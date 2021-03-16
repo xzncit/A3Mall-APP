@@ -339,7 +339,12 @@ var render = function() {
                             {
                               key: image,
                               staticClass: _vm._$g("5-" + $30, "sc"),
-                              attrs: { _i: "5-" + $30 }
+                              attrs: { _i: "5-" + $30 },
+                              on: {
+                                click: function($event) {
+                                  return _vm.$handleViewEvent($event)
+                                }
+                              }
                             },
                             [
                               _c("v-uni-image", {

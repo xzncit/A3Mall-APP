@@ -165,7 +165,7 @@ export default {
 	onNavigationBarButtonTap(e){
 		this.isShareStatus = !this.isShareStatus;
 	},
-    methods: {
+    methods: { 
 		onSwiperChange(event){
 			this.current = event.detail.current;
 		},
