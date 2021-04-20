@@ -87,7 +87,7 @@
 					this.isSubmit = false;
 					this.$utils.msg("请填写手机号码！");
 					return ;
-				}else if(!validation.checkPhone(this.phone)){
+				}else if(!checkPhone(this.phone)){
 					this.isSubmit = false;
 					this.$utils.msg("您填写的手机号码不正确！");
 					return ;

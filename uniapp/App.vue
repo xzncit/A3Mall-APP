@@ -1,7 +1,8 @@
 <script>
 	export default {
 		onLaunch: function() {
-			console.log('App Launch')
+			console.log('App Launch');
+			
 		},
 		onShow: function() {
 			let users = this.$storage.getJson("users");
