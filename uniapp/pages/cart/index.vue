@@ -18,17 +18,19 @@
 						v-for="item in goods"
 						:key="item.id"
 					>
-						<view class="item-check">
-							<checkbox :value="item.id" :checked="item.checked" />
-						</view>
-						<view class="pic">
-							<image :src="item.photo"></image>
+						<view class="left-pic">
+							<view class="item-check">
+								<checkbox :value="item.id+''" :checked="item.checked" />
+							</view>
+							<view class="pic">
+								<image :src="item.photo"></image>
+							</view>
 						</view>
 						<view class="goods">
 							<view class="t">{{ item.title }}</view>
 							<view class="m">{{ item.attr }}</view>
 							<view class="b">
-								<view>{{ item.price }}</view>
+								<view>￥{{ item.price }}</view>
 								<view>
 									<uni-number-box 
 										:min="1" 
@@ -52,6 +54,7 @@
 						<checkbox :checked="isChecked" />
 					</checkbox-group>
 				</view>
+				<view v-if="isDeleteBtn" class="deleteGoods" @click="deleteGoods">删除</view>
 				<view class="cart-bottom-text">
 					<view>合计：</view>
 					<view>
@@ -78,6 +81,7 @@
 		},
 		data(){
 			return {
+				isDeleteBtn:false,
 				isChecked: false,
 				goods: [], // 数据列表
 				array: [],
@@ -124,24 +128,6 @@
 				}
 			})
 		},
-		onNavigationBarButtonTap(event) {
-			if(event.index == 0){
-				let pages = getCurrentPages();
-				let page = pages[pages.length - 1];
-				let currentWebview = page.$getAppWebview();
-				let obj = currentWebview.getStyle().titleNView;
-				
-				if (!obj.buttons) {
-					return;
-				}
-				
-				if(this.deleteGoods() > 0){
-					this.$utils.msg("删除成功");
-				}else{
-					this.$utils.msg("请选择要删除的商品");
-				}
-			}
-		},
 		watch:{
 			goods:{
 				handler(newValue, oldValue){
@@ -152,6 +138,7 @@
 						}
 					});
 					
+					this.isDeleteBtn = total > 0;
 					this.total = total;
 				},
 				deep: true
@@ -182,7 +169,8 @@
 					if(res.data > 0){
 						uni.setTabBarBadge({ index: 2, text: res.data.toString() });
 					}else{
-						uni.removeTabBarBadge({ index: 2 })
+						uni.removeTabBarBadge({ index: 2 });
+						this.mescroll.showEmpty();
 					}
 					this.$store.commit("UPDATECART",res.data);
 				}).catch((err)=>{
@@ -214,9 +202,18 @@
 				for (let i = 0, lenI = items.length; i < lenI; ++i) {
 					let item = items[i];
 					if(values.includes(item.id)){
-						this.$set(item,'checked',true);
+						this.$set(this.goods[i],'checked',true);
 					}else{
-						this.$set(item,'checked',false);
+						this.$set(this.goods[i],'checked',false);
+					}
+				}
+				
+				for(let i = 0; i<this.goods.length; i++){
+					if(this.goods[i].checked){
+						this.isChecked = true;
+						break;
+					}else{
+						this.isChecked = false;
 					}
 				}
 			},
@@ -303,7 +300,12 @@
 		width: 100%;
 		height: 100rpx;
 		position: fixed;
+		/* #ifdef APP-PLUS */
 		bottom: 0px;
+		/* #endif */
+		/* #ifdef H5 */
+		bottom: 50px;
+		/* #endif */
 		left: 0;
 		border-top: 2rpx solid #eee;
 		background-color: #fff;
@@ -312,6 +314,13 @@
 			height: 100rpx;
 			line-height: 100rpx;
 			padding-left: 45rpx;
+		}
+		.deleteGoods { 
+			float: left; 
+			height: 100rpx;
+			line-height: 110rpx; 
+			padding-left: 10rpx;
+			color: #666;
 		}
 		.cart-bottom-text{
 			padding-right: 240rpx;
@@ -356,23 +365,7 @@
 			background: linear-gradient(90deg,#ff6034,#ee0a24);
 		}
 	}
-	uni-checkbox .uni-checkbox-input{ 
-		border-radius: 50%; width: 30rpx !important; height: 30rpx !important;
-		&.uni-checkbox-input-checked{ 
-			background: #3D7EFF; border-color:#3D7EFF; 
-			&::before{
-				width: 20rpx;
-				height: 20rpx;  
-				line-height: 20rpx;
-				text-align: center;
-				font-size: 18rpx;
-				color: #fff;
-				background: transparent;
-				transform: translate(-50%, -50%) scale(1);
-			}
-		}
-	}
-
+	
 	.wrap{
 		width: 100%;
 		background: #fafafa;
@@ -385,39 +378,46 @@
 		background: #fafafa;
 	    .list-item{
 	        width: 88%;
-	        height: 160rpx;
+	        height: 180rpx;
 	        margin: 0 auto;
 	        background-color: #fff;
 	        margin-bottom: 20rpx;
 	        border-radius: 10rpx;
 	        font-size: 28rpx;
 	        padding: 20rpx 20rpx;
+			position: relative;
 	        &:first-child{
 	            margin-top: 20rpx;
 	        }
-	        .item-check{
-	            float: left;
-	            width: 7%;
-	            height: 100%;
-	            position: relative;
-	            margin-top: 60rpx;
-	        }
-	        .pic{
-	            float: left;
-	            width: 20%;
-	            image {
-	                width: 160rpx;
-	                height: 160rpx;
-	            }
-	        }
+			.left-pic {
+				position: absolute;
+				left: 0; top:0; z-index: 999;
+				width: 240rpx; height: 220rpx;
+				.item-check{
+					float: left;
+					width: 25rpx;
+					height: 25px;
+					position: relative;
+					margin-top: 80rpx; margin-left: 15rpx;
+				}
+				.pic{
+					float: right; margin-top: 30rpx;
+					width: 160rpx;
+					image {
+						width: 160rpx;
+						height: 160rpx;
+					}
+				}
+			}
 	        .goods{
 	            float: right;
-	            width: 68%;
+	            padding-left: 240rpx;
 	            font-size: 28rpx;
 	            color: #333;
 	            .t{
 	                width: 100%;
-	                height: 80rpx;
+	                min-height: 50rpx;
+					max-height: 80rpx;
 	                display: -webkit-box;
 	                overflow: hidden;
 	                -webkit-line-clamp: 2;
@@ -425,14 +425,19 @@
 	            }
 	            .m{
 	                color: #666;
-	                font-size: 24rpx;
+	                font-size: 26rpx;
+					display: -webkit-box;
+					overflow: hidden;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical;
 	            }
 	            .b{
 	                height: 60rpx;
+					padding-top: 8rpx;
 	                view:first-child{
 	                    float: left;
 	                    line-height: 60rpx;
-	                    color: red;
+	                    color: red; font-size: 34rpx;
 	                }
 	                view:last-child{
 	                    float: right;

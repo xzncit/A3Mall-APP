@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/badge/Licence-GPL3.0-green.svg" />
     </a>
     <a href="http://www.a3-mall.com">
-        <img src="https://img.shields.io/badge/Edition-v1.0.9-blue.svg" />
+        <img src="https://img.shields.io/badge/Edition-v1.1.1-blue.svg" />
     </a>
 </p>
 <p align="center">    
@@ -22,7 +22,6 @@
    
 ## uniapp
 当前A3Mall uniapp 只支持生成 android、ios，其他版本的后续都会支持的。
-当前程序版本为测试版v1.0，在使用中有问题可以加群反馈。
 
 ## 软件架构
     PHP >= 7.2.0

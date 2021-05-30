@@ -22,4 +22,5 @@
 	@import '~@/style.css';
 	body { background-color: #f8f8f8; }
 	.clear:after { content:" "; font-size:0; display:block; height:0; clear:both; visibility:hidden; }
+	uni-checkbox .uni-checkbox-input { border-radius: 50rpx; }
 </style>

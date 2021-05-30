@@ -290,15 +290,7 @@
 				"navigationBarBackgroundColor": "#B91922",
 				"app-plus": {
 					"titleNView": {
-						"buttons": [ 
-							{  
-								"text": "\ue652",  
-								"fontSrc": "/static/font/iconfont/iconfont.ttf",  
-								"fontSize": "19px",
-								"color": "#ffffff",
-								"float": "right"
-							}  
-						]
+						
 					}  
 				}  
 			}
